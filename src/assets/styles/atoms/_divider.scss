@@ -1,0 +1,31 @@
+.divider {
+  display: inline-block;
+  font-size: rem(30);
+  color: $peach;
+  animation: spin 3s infinite alternate ease-in-out;
+
+  @include media($m-screen-up) {
+    font-size: rem(40);
+  }
+
+  &--loader {
+    font-size: rem(80);
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      color: $forest;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

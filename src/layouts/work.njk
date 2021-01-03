@@ -1,0 +1,15 @@
+---
+layout: default
+bodyClass: entry
+---
+
+<div class="entry__container" id="js-ajax-content">
+  <header class="entry__header">
+    <h2>{{ title }}</h2>
+    <p>{{ type }}</p>
+  </header>
+
+  <div class="entry__main">
+    {{ content | safe }}
+  </div>
+</div>

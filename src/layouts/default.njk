@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}" class="no-js" >
+  <head>
+    <meta charset="utf-8">
+    <title>{% if title %}{{ title }} · {{ site.title }}{% else %}{{ site.title or site.name}}{% endif %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ description or site.description }}">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    {# Open graph related #}
+    <meta property="og:title" content="{{ title or site.title or site.name }}" />
+    <meta property="og:type" content="{{ type or site.type }}" />
+    <meta property="og:url" content="{{ url or site.url }}" />
+    <meta property="og:image" content="{% if image %}{{ site.url }}/assets/static/{{ image }}{% else %}{{ site.image }}{% endif %}" />
+    <meta property="og:site_name" content="{{ name or site.name }}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+
+    {# Based on https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs #}
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/assets/static/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/assets/static/apple-touch-icon.png">
+
+    <script>
+      var root = document.documentElement;
+      root.classList.remove('no-js');
+      root.classList.add('js');
+    </script>
+
+    <link rel="stylesheet" href="{% webpack 'main.css' %}">
+  </head>
+  <body class="{{ bodyClass }}">
+    {% include 'header.njk' %}
+
+    <main>
+      <div id="js-ajax-container">
+        {{ content | safe }}
+      </div>
+    </main>
+
+    {% include 'footer.njk' %}
+
+    <div class="loader" id="js-loader">
+      <div class="divider divider--loader">&#10022;</div>
+    </div>
+
+    <script async defer src="{% webpack 'main.js' %}"></script>
+  </body>
+</html>

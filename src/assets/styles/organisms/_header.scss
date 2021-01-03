@@ -1,0 +1,12 @@
+.header {
+  .js & { opacity: 0; }
+
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  @include containerPadding;
+
+  &__home-link {
+    @include linkUnderline(90%);
+  }
+}

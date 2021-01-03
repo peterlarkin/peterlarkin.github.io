@@ -1,0 +1,44 @@
+@mixin media($breakpoint) {
+  @media only screen and ($breakpoint) {
+    @content;
+  }
+}
+
+$xxs-screen : rem(375);
+$xs-screen  : rem(420);
+$s-screen   : rem(550);
+$m-screen   : rem(768);
+$l-screen   : rem(960);
+$xl-screen  : rem(1200);
+$xxl-screen : rem(1440);
+
+$xxs-screen-down  : "max-width: #{$xxs-screen - rem(1)}";
+$xxs-screen-up    : "min-width: #{$xxs-screen}";
+
+$xs-screen-down   : "max-width: #{$xs-screen - rem(1)}";
+$xs-screen-up     : "min-width: #{$xs-screen}";
+
+$s-screen-down    : "max-width: #{$s-screen - rem(1)}";
+$s-screen-up      : "min-width: #{$s-screen}";
+
+$m-screen-down    : "max-width: #{$m-screen - rem(1)}";
+$m-screen-up      : "min-width: #{$m-screen}";
+
+$l-screen-down    : "max-width: #{$l-screen - rem(1)}";
+$l-screen-up      : "min-width: #{$l-screen}";
+
+$xl-screen-down   : "max-width: #{$xl-screen - rem(1)}";
+$xl-screen-up     : "min-width: #{$xl-screen}";
+
+$xxl-screen-down  : "max-width: #{$xxl-screen - rem(1)}";
+$xxl-screen-up    : "min-width: #{$xxl-screen}";
+
+$breakpoints: (
+  xxs: $xxs-screen-up,
+  xs: $xs-screen-up,
+  s: $s-screen-up,
+  m: $m-screen-up,
+  l: $l-screen-up,
+  xl: $xl-screen-up,
+  xxl: $xxl-screen-up
+);

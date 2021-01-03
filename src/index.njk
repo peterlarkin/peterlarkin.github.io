@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div id="js-ajax-content">
+  <section class="intro masthead">
+    <p>
+      Hello, I’m Brenda, a strategist based in London. Currently working at <a href="https://dnco.com/">dn&co</a> on place-branding. Previously at <a href="https://niceandserious.com">Nice and Serious</a>.
+    </p>
+  </section>
+
+  <section class="work">
+    <h2 class="work__header">Selected work</h2>
+
+    <ul class="work__list">
+      {%- for post in collections.work -%}
+      <li class="work__item">
+        <a href="{{ post.url }}" class="work__link js-work-link js-ajax-link">
+          <span class="work__link-title">
+            <span class="work__link-text">{{ post.data.title }}</span><span class="work__link-divider">. </span>
+          </span>
+          <span class="work__link-tagline">{{ post.data.description }}.</span>
+        </a>
+        {% image post.data.hoverImage, "Start Network report cover", "work__preview", true, "25rem" %}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </section>
+</div>

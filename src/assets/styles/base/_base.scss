@@ -1,0 +1,52 @@
+*,
+:before,
+:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html { height: 100%; }
+
+body {
+  position: relative;
+  min-height: 100%;
+  font-size: rem(22);
+  line-height: 1.4;
+  color: $black;
+  background: $daisy;
+  font-family: $ff;
+  font-weight: $fw-regular;
+  font-variation-settings: $ff-default-settings;
+  padding: $gtr 0;
+
+  @include media($m-screen-up) {
+    padding: ($gtr * 2) 0;
+  }
+}
+
+main {
+  .js & {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  margin: $gtr 0;
+  @include containerPadding;
+
+  @include media($m-screen-up) {
+    margin: ($gtr * 2) 0;
+  }
+}
+
+a {
+  color: currentColor;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Brenda Sjahrial",
+  "icons": [
+    { "src": "/assets/static/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/assets/static/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}

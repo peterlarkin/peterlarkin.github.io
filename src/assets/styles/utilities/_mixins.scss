@@ -1,0 +1,123 @@
+@mixin listReset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin btnReset {
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  border: none;
+  color: inherit;
+  display: inline-flex;
+}
+
+@mixin containerPadding {
+  padding-left: $gtr;
+  padding-right: $gtr;
+
+  @include media($m-screen-up) {
+    padding-left: $gtr * 4;
+    padding-right: $gtr * 4;
+  }
+}
+
+@mixin linkUnderline($bottom: 100%) {
+  text-decoration: none;
+  text-shadow: 2px 0 0 $daisy, 0 2px 0 $daisy, -2px 0 0 $daisy;
+  background-repeat: no-repeat;
+  background-image:
+    linear-gradient($peach, $peach),
+    linear-gradient($forest, $forest);
+  background-size: 100% 2px, 0 2px;
+  background-position: right #{$bottom}, left #{$bottom};
+  transition: background-size 0.2s ease-in;
+
+  &:hover {
+    background-size: 0% 2px, 100% 2px;
+  }
+}
+
+@mixin svgPad($width, $height) {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 0;
+    padding-bottom: percentage($height/$width);
+  }
+
+  svg {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+  }
+}
+
+@mixin imgPad($width, $height) {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 0;
+    padding-bottom: percentage($height/$width);
+  }
+
+  picture, img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+  }
+}
+
+@mixin embedPad() {
+  position: relative;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 0;
+    padding-bottom: percentage(9/16);
+  }
+
+  picture,
+  img,
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: cover;
+  }
+}
+
+@mixin visuallyHidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}

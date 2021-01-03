@@ -1,0 +1,17 @@
+$offset-small: ($gtr * 3.5) + (rem(36) * 1.4) + (rem(24) * 1.4);
+$offset-large: ($gtr * 5) + (rem(75) * 1.4) + (rem(60) * 1.4);
+
+:root {
+  --vh: 100vh;
+}
+
+.intro {
+  max-width: $max-width-wide;
+  min-height: rem(150);
+  height: calc(var(--vh) - #{$offset-small});
+
+  @include media($m-screen-up) {
+    min-height: rem(300);
+    height: calc(var(--vh) - #{$offset-large});
+  }
+}

@@ -1,0 +1,42 @@
+.entry {
+  main {
+    background: $off-white;
+    padding-top: $gtr;
+    padding-bottom: ($gtr * 2);
+
+    @include media($m-screen-up) {
+      padding-top: ($gtr * 2);
+    }
+  }
+
+  &__container {
+    max-width: $max-width-wide;
+  }
+
+  &__header {
+    margin: $gtr 0;
+
+    @include media($m-screen-up) {
+      margin: ($gtr * 2) 0;
+    }
+
+    h2 { line-height: 1; }
+
+    p {
+      font-weight: $fw-bold;
+      color: $peach;
+    }
+  }
+
+  &__main {
+    h3, h4 {
+      margin-top: $gtr * 3;
+    }
+
+    &::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+}
