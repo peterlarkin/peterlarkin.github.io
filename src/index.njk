@@ -1,12 +1,21 @@
 ---
 layout: default
+bodyClass: home
 ---
 
 <div id="js-ajax-content">
-  <section class="intro masthead">
-    <p>
-      Hello, I’m Brenda, a strategist based in London. Currently working at <a href="https://dnco.com/">dn&co</a> on place-branding. Previously at <a href="https://niceandserious.com">Nice and Serious</a>.
-    </p>
+  <section class="intro">
+    <div class="intro__text">
+      <h1>Peter Larkin</h1>
+      <p>
+        Motivated by a desire to solve real-world problems, I bring a mix of strategic thinking, creative ideas and executional detail to help create work that's bold and meaningful.
+      </p>
+    </div>
+    <div class="intro__canvas" id="js-sphere"></div>
+    <div class="intro__highlights" id="js-highlights">
+      {% include "./_svgs/icon-arrow-down.svg" %}
+      <span>Highlights</span>
+    </div>
   </section>
 
   <section class="work">
@@ -21,7 +30,6 @@ layout: default
           </span>
           <span class="work__link-tagline">{{ post.data.description }}.</span>
         </a>
-        {% image post.data.hoverImage, "Start Network report cover", "work__preview", true, "25rem" %}
       </li>
       {%- endfor -%}
     </ul>

@@ -1,6 +1,5 @@
 .entry {
   main {
-    background: $off-white;
     padding-top: $gtr;
     padding-bottom: ($gtr * 2);
 
@@ -10,7 +9,7 @@
   }
 
   &__container {
-    max-width: $max-width-wide;
+    max-width: $max-width;
   }
 
   &__header {
@@ -23,8 +22,7 @@
     h2 { line-height: 1; }
 
     p {
-      font-weight: $fw-bold;
-      color: $peach;
+      color: $yellow;
     }
   }
 

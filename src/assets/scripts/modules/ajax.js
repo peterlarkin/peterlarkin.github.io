@@ -80,6 +80,7 @@ function processAjax(response, url, isPopState) {
     // If the new page has a class on the body element
     // Make sure it gets set here.
     if (bodyClass != "") {
+      document.body.classList = "";
       document.body.classList.add(bodyClass);
     } else {
       document.body.classList = "";

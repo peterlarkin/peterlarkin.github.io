@@ -1,12 +1,14 @@
 .header {
-  .js & { opacity: 0; }
-
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: baseline;
   @include containerPadding;
 
-  &__home-link {
-    @include linkUnderline(90%);
+  .home & {
+    display: none;
+  }
+
+  a {
+    text-decoration: none;
   }
 }

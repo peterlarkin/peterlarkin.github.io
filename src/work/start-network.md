@@ -1,11 +1,10 @@
 ---
 tags: work
 layout: work
-date: 2020-12-01
+date: 2020-12-04
 title: Start Network
 description: Positively disrupting the humanitarian aid system
 type: Brand strategy
-hoverImage: start-network-logo.jpg
 image: share-image.png
 
 ---

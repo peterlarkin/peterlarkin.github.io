@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{% webpack 'main.css' %}">
   </head>
   <body class="{{ bodyClass }}">
+
     {% include 'header.njk' %}
 
     <main>
@@ -40,7 +41,7 @@
     {% include 'footer.njk' %}
 
     <div class="loader" id="js-loader">
-      <div class="divider divider--loader">&#10022;</div>
+      Loading...
     </div>
 
     <script async defer src="{% webpack 'main.js' %}"></script>

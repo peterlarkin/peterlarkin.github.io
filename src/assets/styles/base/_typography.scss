@@ -1,24 +1,28 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 p {
-  font-weight: $fw-regular;
   margin-bottom: $gtr;
 }
 
 strong {
-  font-weight: $fw-bold;
+  font-weight: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $forest;
-  font-weight: $fw-bold;
-  font-variation-settings: $ff-heading-settings;
+  font-weight: normal;
   margin: 0;
 }
 
 h1 {
   font-size: rem(36);
+  letter-spacing: rem(-0.6);
 
   @include media($m-screen-up) {
-    font-size: rem(75);
+    font-size: rem(72);
+    letter-spacing: rem(-1.2);
   }
 }
 

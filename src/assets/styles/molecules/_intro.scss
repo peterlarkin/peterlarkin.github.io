@@ -1,17 +1,44 @@
-$offset-small: ($gtr * 3.5) + (rem(36) * 1.4) + (rem(24) * 1.4);
-$offset-large: ($gtr * 5) + (rem(75) * 1.4) + (rem(60) * 1.4);
-
 :root {
   --vh: 100vh;
 }
 
 .intro {
-  max-width: $max-width-wide;
-  min-height: rem(150);
-  height: calc(var(--vh) - #{$offset-small});
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto fit-content(100%);
 
-  @include media($m-screen-up) {
-    min-height: rem(300);
-    height: calc(var(--vh) - #{$offset-large});
+  &__text {
+    grid-column: auto / span 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      margin-bottom: $gtr / 2;
+    }
+
+    p {
+      font-size: rem(36);
+      letter-spacing: rem(-0.6);
+      color: $light-green;
+    }
+  }
+
+  &__canvas {
+    grid-column: 7 / span 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__highlights {
+    display: flex;
+    align-items: center;
+    padding-bottom: $gtr * 2;
+
+    .icon {
+      margin-right: $gtr;
+    }
   }
 }

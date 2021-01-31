@@ -1,9 +1,6 @@
 .footer {
-  .js & { opacity: 0; }
-
   font-size: rem(16);
   padding-top: $gtr;
-  @include containerPadding;
 
   @include media($m-screen-up) {
     display: flex;
@@ -24,7 +21,7 @@
 
       &::after {
         content: "/";
-        color: $peach;
+        color: $yellow;
         margin-left: $gtr / 2;
         margin-right: $gtr / 2;
       }

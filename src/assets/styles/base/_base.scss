@@ -5,37 +5,24 @@
   margin: 0;
 }
 
-html { height: 100%; }
+html {
+  height: 100%;
+}
 
 body {
   position: relative;
   min-height: 100%;
   font-size: rem(22);
-  line-height: 1.4;
-  color: $black;
-  background: $daisy;
+  line-height: 1;
+  color: $light-blue;
+  background: $dark-green;
   font-family: $ff;
-  font-weight: $fw-regular;
-  font-variation-settings: $ff-default-settings;
-  padding: $gtr 0;
-
-  @include media($m-screen-up) {
-    padding: ($gtr * 2) 0;
-  }
 }
 
 main {
-  .js & {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  margin: $gtr 0;
-  @include containerPadding;
-
-  @include media($m-screen-up) {
-    margin: ($gtr * 2) 0;
-  }
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $gtr;
 }
 
 a {

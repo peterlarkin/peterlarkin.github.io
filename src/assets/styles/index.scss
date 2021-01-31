@@ -5,16 +5,13 @@
 @import "utilities/variables";
 @import "utilities/mixins";
 @import "utilities/media-queries";
-@import "utilities/classes";
 
 @import "base/base";
 @import "base/typography";
 
-@import "atoms/img";
-@import "atoms/divider";
 @import "atoms/loader";
+@import "atoms/icon";
 
-@import "molecules/masthead";
 @import "molecules/intro";
 
 @import "organisms/header";

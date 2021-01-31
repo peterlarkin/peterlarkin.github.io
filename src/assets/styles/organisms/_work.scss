@@ -1,5 +1,4 @@
 .work {
-  max-width: $max-width-wide;
 
   &__header {
     position: relative;
@@ -16,7 +15,7 @@
       position: absolute;
       right: 0;
       bottom: 0;
-      color: $peach;
+      color: $yellow;
       transform: rotate(90deg);
     }
   }
@@ -27,10 +26,10 @@
 
   &__item {
     position: relative;
-    border-bottom: 2px solid $forest;
+    border-bottom: 2px solid $light-blue;
 
     &:first-child {
-      border-top: 2px solid $forest;
+      border-top: 2px solid $light-blue;
     }
   }
 
@@ -52,7 +51,7 @@
       top: rem(20);
       font-size: rem(28);
       left: 0;
-      color: $peach;
+      color: $yellow;
       transition: color 0.2s ease-in-out;
 
       @include media($m-screen-up) {
@@ -62,14 +61,8 @@
     }
 
     &:hover {
-      .work__link-text,
-      .work__link-divider {
-        font-weight: 700;
-        font-variation-settings: 'opsz' 90, 'SOFT' 85, 'WONK' 1;
-      }
-
       &::before {
-        color: $forest;
+        color: $light-blue;
       }
 
       & + .img {
@@ -81,7 +74,6 @@
   }
 
   &__link-title {
-    font-variation-settings: $ff-heading-settings;
     font-size: rem(32);
     line-height: 1;
 
@@ -91,13 +83,12 @@
   }
 
   &__link-text {
-    font-weight: $fw-bold;
-    color: $forest;
+    color: $light-blue;
     transition: font-weight 0.4s ease-out;
   }
 
   &__link-divider {
-    color: $peach;
+    color: $yellow;
     transition: font-weight 0.2s ease-out;
   }
 
@@ -118,7 +109,7 @@
     position: absolute;
     pointer-events: none;
     opacity: 0;
-    box-shadow: 0 0 16px 3px rgba($forest, 0.2);
+    box-shadow: 0 0 16px 3px rgba($light-blue, 0.2);
     transition: visibility 0s, opacity 0.5s, transform 0.7s ease-out;
 
     picture, img {
