@@ -1,0 +1,92 @@
+$stop1: #AADDD6;
+$stop2: #B8DFCA;
+$stop3: #C7E1BE;
+$stop4: #D5E2B3;
+$stop5: #E3E4A6;
+$stop6: #F0E59A;
+
+.zig {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.zig-end {
+  grid-column: span 9;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  border-bottom: $border-primary;
+
+  &__label {
+    align-items: flex-end;
+    margin-bottom: $space;
+    padding-left: $space * 2;
+    border-left: rem(4) solid transparent;
+    grid-column: auto / span 4;
+
+    @include media($m-screen-up) {
+      display: flex;
+    }
+
+    &--second {
+      grid-column-start: 5;
+      border: none;
+    }
+  }
+}
+
+.zag {
+  grid-column: auto / span 1;
+  position: relative;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+
+  &__left,
+  &__bottom {
+    position: absolute;
+    left: 0;
+  }
+
+  &__left {
+    top: 0;
+    width: $default-border-width;
+    height: 100%;
+    background-image: linear-gradient($stop1, $stop2);
+  }
+
+  &__bottom {
+    bottom: 0;
+    width: 100%;
+    height: $default-border-width;
+    background-image: linear-gradient(90deg, $stop2, $stop3);
+    margin-left: $default-border-width;
+  }
+
+  &--2 {
+    grid-column-start: 2;
+
+    .zag__left {
+      background-image: linear-gradient($stop3, $stop4);
+    }
+
+    .zag__bottom {
+      background-image: linear-gradient(90deg, $stop4, $stop5);
+    }
+  }
+
+  &--3 {
+    grid-column-start: 3;
+
+    .zag__left {
+      background-image: linear-gradient($stop5, $stop6);
+    }
+
+    .zag__bottom {
+      background-image: linear-gradient(90deg, $stop6, $yellow);
+    }
+  }
+}

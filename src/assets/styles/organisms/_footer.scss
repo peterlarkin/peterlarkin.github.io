@@ -1,4 +1,7 @@
 .footer {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $gtr;
   font-size: rem(16);
   padding-top: $gtr;
 

@@ -27,41 +27,31 @@ h1 {
 }
 
 h2 {
-  font-size: rem(32);
+  font-size: rem(28);
+  letter-spacing: rem(-0.3);
 
   @include media($m-screen-up) {
-    font-size: rem(60);
+    font-size: rem(36);
+    letter-spacing: rem(-0.6);
   }
 }
 
 h3 {
-  font-size: rem(28);
+  font-size: rem(24);
+  letter-spacing: rem(-0.25);
 
   @include media($m-screen-up) {
-    font-size: rem(50);
+    font-size: rem(32);
+    letter-spacing: rem(-0.5);
   }
 }
 
 h4 {
-  font-size: rem(24);
+  font-size: rem(16);
+  letter-spacing: rem(-0.2);
 
   @include media($m-screen-up) {
-    font-size: rem(40);
-  }
-}
-
-h5 {
-  font-size: rem(20);
-
-  @include media($m-screen-up) {
-    font-size: rem(30);
-  }
-}
-
-h6 {
-  font-size: rem(18);
-
-  @include media($m-screen-up) {
-    font-size: rem(25);
+    font-size: rem(24);
+  letter-spacing: rem(-0.4);
   }
 }

@@ -1,130 +1,14 @@
 .work {
-
-  &__header {
-    position: relative;
-    font-size: rem(24);
-    margin-bottom: $gtr / 2;
-
-    @include media($m-screen-up) {
-      font-size: rem(30);
-      margin-bottom: $gtr;
-    }
-
-    &::after {
-      content: '\27BA';
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      color: $yellow;
-      transform: rotate(90deg);
-    }
-  }
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  padding-bottom: ($gtr * 2);
 
   &__list {
     @include listReset;
+    grid-column: 4 / span 9;
   }
 
   &__item {
     position: relative;
-    border-bottom: 2px solid $light-blue;
-
-    &:first-child {
-      border-top: 2px solid $light-blue;
-    }
-  }
-
-  &__link {
-    display: block;
-    position: relative;
-    padding: ($gtr * 1.5) 0;
-    padding-left: rem(30);
-    text-decoration: none;
-
-    @include media($m-screen-up) {
-      padding: ($gtr * 3) 0;
-      padding-left: rem(60);
-    }
-
-    &::before {
-      content: "\27BA";
-      position: absolute;
-      top: rem(20);
-      font-size: rem(28);
-      left: 0;
-      color: $yellow;
-      transition: color 0.2s ease-in-out;
-
-      @include media($m-screen-up) {
-        top: rem(40);
-        font-size: rem(50);
-      }
-    }
-
-    &:hover {
-      &::before {
-        color: $light-blue;
-      }
-
-      & + .img {
-        visibility: visible;
-        opacity: 1;
-        transform: translateY(-$gtr * 2);
-      }
-    }
-  }
-
-  &__link-title {
-    font-size: rem(32);
-    line-height: 1;
-
-    @include media($m-screen-up) {
-      font-size: rem(60);
-    }
-  }
-
-  &__link-text {
-    color: $light-blue;
-    transition: font-weight 0.4s ease-out;
-  }
-
-  &__link-divider {
-    color: $yellow;
-    transition: font-weight 0.2s ease-out;
-  }
-
-  &__link-tagline {
-    display: block;
-    font-size: rem(18);
-
-    @include media($m-screen-up) {
-      font-size: inherit;
-    }
-  }
-
-  .img--work__preview {
-    display: none;
-    visibility: hidden;
-    margin-top: 0;
-    width: rem(400);
-    position: absolute;
-    pointer-events: none;
-    opacity: 0;
-    box-shadow: 0 0 16px 3px rgba($light-blue, 0.2);
-    transition: visibility 0s, opacity 0.5s, transform 0.7s ease-out;
-
-    picture, img {
-      display: block;
-    }
-
-    @include media($m-screen-up) {
-      display: block;
-      bottom: 60%;
-      right: 0;
-    }
-
-    @include media($l-screen-up) {
-      bottom: 30%;
-      right: $gtr * 2;
-    }
   }
 }

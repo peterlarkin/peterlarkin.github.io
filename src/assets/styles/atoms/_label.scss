@@ -1,0 +1,9 @@
+.label {
+  text-transform: uppercase;
+  font-size: rem(16);
+  letter-spacing: rem(1.5);
+
+  @include media($m-screen-up) {
+    letter-spacing: rem(3);
+  }
+}

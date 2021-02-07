@@ -4,7 +4,6 @@ $ff: 'oatmeal-sans-light', 'system-ui', sans-serif;
 // Colors
 $white: #FFFFFF;
 $off-white: #F9F2E6;
-
 $dark-green: #004F48;
 $light-blue: #AADDD6;
 $light-green: #D4E2B2;
@@ -13,3 +12,8 @@ $yellow: #FFE78E;
 // Spacing
 $max-width: rem(1260);
 $gtr: rem(15);
+$space: rem(15);
+
+// Borders
+$default-border-width: rem(4);
+$border-primary: $default-border-width solid $yellow;

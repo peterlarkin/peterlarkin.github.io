@@ -14,21 +14,29 @@ bodyClass: home
     <div class="intro__canvas" id="js-sphere"></div>
     <div class="intro__highlights" id="js-highlights">
       {% include "./_svgs/icon-arrow-down.svg" %}
-      <span>Highlights</span>
+      <span class="label">Highlights</span>
     </div>
   </section>
 
-  <section class="work">
-    <h2 class="work__header">Selected work</h2>
+  {% include "zig-zag.njk" %}
 
+  <section class="work">
     <ul class="work__list">
       {%- for post in collections.work -%}
       <li class="work__item">
-        <a href="{{ post.url }}" class="work__link js-work-link js-ajax-link">
-          <span class="work__link-title">
-            <span class="work__link-text">{{ post.data.title }}</span><span class="work__link-divider">. </span>
-          </span>
-          <span class="work__link-tagline">{{ post.data.description }}.</span>
+        <a href="{{ post.url }}" class="card js-ajax-link">
+          <div class="card__main">
+            <div class="card__details">
+              <p class="card__client">{{ post.data.client }}</p>
+              <p class="card__type a-label">{{ post.data.type }}</p>
+            </div>
+            <div class="card__role">
+              {{ post.data.role }}
+            </div>
+          </div>
+          <div class="card__expand">
+            {% include "./_svgs/icon-eye.svg" %}
+          </div>
         </a>
       </li>
       {%- endfor -%}

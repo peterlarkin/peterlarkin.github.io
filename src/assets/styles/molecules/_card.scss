@@ -1,0 +1,77 @@
+.card {
+  position: relative;
+  border: $border-primary;
+  border-top: none;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  padding: $space 0;
+  text-decoration: none;
+  color: $yellow;
+
+  @include media($m-screen-up) {
+    padding: ($space * 2) 0;
+  }
+
+  &:hover {
+    background-color: darken($dark-green, 2%);
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-column: auto / span 8;
+  }
+
+  &__details {
+    grid-column: auto / span 8;
+    padding-left: $space;
+
+    @include media($m-screen-up) {
+      grid-column: auto / span 4;
+      padding-left: ($space * 2);
+    }
+
+    p {
+      margin: 0 0 rem(3);
+      line-height: 1;
+    }
+  }
+
+  &__client {
+    @extend h2;
+    color: $light-blue;
+  }
+
+  &__type {
+    color: $light-green;
+  }
+
+  &__role,
+  &__expand {
+    display: flex;
+    align-items: center;
+  }
+
+  &__role {
+    @extend h4;
+    grid-column: auto / span 8;
+    padding-left: $space;
+    color: $light-blue;
+
+    @include media($m-screen-up) {
+      grid-column: 5 / span 4;
+      padding-left: ($space * 2);
+      color: $light-green;
+    }
+  }
+
+  &__expand {
+    grid-column: 9 / span 1;
+    justify-content: flex-end;
+    padding-right: $space;
+
+    @include media($m-screen-up) {
+      padding-right: ($space * 2);
+    }
+  }
+}

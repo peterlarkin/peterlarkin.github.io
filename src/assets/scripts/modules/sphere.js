@@ -145,8 +145,8 @@ function render () {
   // stats.begin();
 
   renderer.render(scene, camera);
-  uniforms.u_time.value = clock.getElapsedTime();
-  updateBufferMesh();
+  // uniforms.u_time.value = clock.getElapsedTime();
+  // updateBufferMesh();
 
   // stats.end();
 
@@ -160,8 +160,8 @@ export default function() {
   // Add stats panel to DOM
   // document.body.appendChild( stats.dom );
   // Schedule the first frame
-  requestAnimationFrame( render );
-  animateSpikes();
+  // requestAnimationFrame( render );
+  // animateSpikes();
   // Add resize listener
   window.addEventListener( 'resize', onWindowResize, false );
 }
