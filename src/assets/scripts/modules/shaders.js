@@ -32,6 +32,6 @@ export const fShader = `
         vec3 lightDirection = normalize(vecPos - pointLights[l].position);
         addedLights.rgb += clamp(dot(-lightDirection, vecNormal), 0.0, 1.0) * pointLights[l].color;
     }
-    gl_FragColor = vec4(mix(color1, color2, abs(sin(u_time / 2.0) * (vUv.y + 0.5))), 0.8) * addedLights;
+    gl_FragColor = vec4(mix(color1, color2, (abs(sin(u_time / 2.0) * (vUv.y / 0.5))) - 0.25), 0.8) * addedLights;
   }
 `;
