@@ -28,24 +28,18 @@ const lights = createLights();
 
 const uniforms = THREE.UniformsUtils.merge([
   THREE.UniformsLib[ "lights" ],
-  THREE.UniformsLib[ "fog" ],
   {
     u_time: { value: 0.0 },
-    // fogColor: { type: "c", value: scene.fog.color },
-    // fogNear: { type: "f", value: scene.fog.near },
-    // fogFar: { type: "f", value: scene.fog.far },
     color1: { type: "c", value: new THREE.Color(0xFFE78E) },
     color2: { type: "c", value: new THREE.Color(0xAADDD6) }
   }
 ]);
 
 const sphere = createSphere();
-// const cylinder = createCylinder();
 
 function createScene() {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color( 0x004F48 );
-  // scene.fog = new THREE.Fog(0x004F48, 0.1, 7);
   return scene;
 }
 
@@ -88,30 +82,13 @@ function createSphere() {
     vertexShader: vShader,
     fragmentShader: fShader,
     uniforms,
-    lights: true,
-    // fog: true
+    lights: true
   });
   const geometry = new THREE.SphereBufferGeometry( 1, 128, 128 );
   const sphere = new THREE.Mesh( geometry, material );
   scene.add( sphere );
   return sphere;
 }
-
-// function createCylinder() {
-//   const geometry = new THREE.CylinderGeometry( 1, 1, 2, 32, 1, true );
-//   const material = new THREE.MeshStandardMaterial({
-//     color: 0xAADDD6,
-//     emissive: 0x072534,
-//     side: THREE.DoubleSide,
-//     // metalness: 0,
-//     // roughness: 0
-//   });
-//   const cylinder = new THREE.Mesh( geometry, material );
-//   cylinder.position.y = 5;
-//   // cylinder.rotation.x = 1.7;
-//   scene.add( cylinder );
-//   return cylinder;
-// }
 
 const position = sphere.geometry.getAttribute('position');
 const count = position.count;
