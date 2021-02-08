@@ -15,6 +15,9 @@ export const fShader = `
   uniform vec3 color1;
   uniform vec3 color2;
   uniform float u_time;
+  uniform vec3 fogColor;
+  uniform float fogNear;
+  uniform float fogFar;
   varying vec2 vUv;
   varying vec3 vecPos;
   varying vec3 vecNormal;
@@ -33,5 +36,14 @@ export const fShader = `
         addedLights.rgb += clamp(dot(-lightDirection, vecNormal), 0.0, 1.0) * pointLights[l].color;
     }
     gl_FragColor = vec4(mix(color1, color2, (abs(sin(u_time / 2.0) * (vUv.y / 0.5))) - 0.25), 0.8) * addedLights;
+    #ifdef USE_FOG
+      #ifdef USE_LOGDEPTHBUF_EXT
+        float depth = gl_FragDepthEXT / gl_FragCoord.w;
+      #else
+        float depth = gl_FragCoord.z / gl_FragCoord.w;
+      #endif
+      float fogFactor = smoothstep( fogNear, fogFar, depth );
+      gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+    #endif
   }
 `;

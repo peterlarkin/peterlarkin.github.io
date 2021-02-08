@@ -10,5 +10,11 @@
 
   &__item {
     position: relative;
+    opacity: 0;
+    transform: translateY(-$space * 2);
+
+    &:nth-child(1) {
+      transform: translateY(0);
+    }
   }
 }

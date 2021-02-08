@@ -18,12 +18,19 @@ bodyClass: home
     </div>
   </section>
 
-  {% include "zig-zag.njk" %}
+  {# <div style="text-align: right;">
+    <button id="replay">Replay</button>
+    <button id="reverse">Reverse</button>
+  </div> #}
+
+  <div class="zig-zag">
+    {% include "zig-zag.njk" %}
+  </div>
 
   <section class="work">
     <ul class="work__list">
       {%- for post in collections.work -%}
-      <li class="work__item">
+      <li class="work__item js-work-item">
         <a href="{{ post.url }}" class="card js-ajax-link">
           <div class="card__main">
             <div class="card__details">
