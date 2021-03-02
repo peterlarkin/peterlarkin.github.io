@@ -11,6 +11,8 @@
   border: none;
   color: inherit;
   display: inline-flex;
+  align-items: center;
+  vertical-align: baseline;
 }
 
 @mixin containerPadding {

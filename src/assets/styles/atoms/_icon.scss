@@ -4,6 +4,15 @@
   height: rem(30);
 }
 
+.icon--plus {
+  width: rem(15);
+  height: rem(15);
+
+  line {
+    stroke: $light-blue;
+  }
+}
+
 .icon--eye {
   .eye-all {
     transition: transform 0.2s ease-in-out;

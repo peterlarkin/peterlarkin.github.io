@@ -1,0 +1,42 @@
+.btn {
+  @include btnReset;
+  color: $light-blue;
+
+  &--icon {
+    svg {
+      margin-right: $gtr / 2;
+    }
+  }
+
+  &--brackets {
+    margin-left: $gtr / 2;
+    transition: letter-spacing 0.2s ease-in-out;
+
+    span {
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &::before,
+    &::after {
+      color: $yellow;
+    }
+
+    &::before {
+      content: '[';
+      margin-right: rem(3);
+    }
+
+    &::after {
+      content: ']';
+      margin-left: rem(3);
+    }
+
+    &:hover {
+      letter-spacing: rem(8);
+
+      span {
+        transform: translateY(rem(-4));
+      }
+    }
+  }
+}

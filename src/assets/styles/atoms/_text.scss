@@ -1,0 +1,10 @@
+.text {
+  &--green {
+    color: $light-green;
+  }
+
+  &--large {
+    font-size: rem(36);
+    letter-spacing: rem(-0.6);
+  }
+}

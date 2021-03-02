@@ -19,9 +19,11 @@
     }
 
     p {
-      font-size: rem(36);
-      letter-spacing: rem(-0.6);
-      color: $light-green;
+      margin-bottom: $gtr / 2;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 
