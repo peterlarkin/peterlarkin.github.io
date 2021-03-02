@@ -1,19 +1,22 @@
 .card {
   position: relative;
   border: $border-primary;
-  border-top: none;
+  margin-top: rem(-4);
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   padding: $space 0;
   text-decoration: none;
   color: $yellow;
+  transition: all 0.2s ease-in-out;
 
   @include media($m-screen-up) {
     padding: ($space * 2) 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: darken($dark-green, 2%);
+    transform: translateX($gtr);
   }
 
   &__main {
