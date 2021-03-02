@@ -6,7 +6,7 @@ title: WriteNow Campaign
 description: Creating a...
 client: Penguin
 type: Campaign
-role: Creative Director / Copy
+role: Creative Director + Copy
 image: share-image.png
 ---
 ### Brief 

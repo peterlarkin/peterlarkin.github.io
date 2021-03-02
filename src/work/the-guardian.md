@@ -1,12 +1,12 @@
 ---
 tags: work
 layout: work
-date: 2020-12-03
-title: Museum of Optimism
+date: 2020-12-06
+title: Digital Features
 description: Creating a...
-client: Museum of Optimism
+client: The Guardian
 type: Digital
-role: Design + Code
+role: Digital Director, Design + Code
 image: share-image.png
 ---
 ### Brief 

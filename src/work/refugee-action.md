@@ -1,12 +1,12 @@
 ---
 tags: work
 layout: work
-date: 2020-12-03
-title: Museum of Optimism
+date: 2020-12-05
+title: Rebrand
 description: Creating a...
-client: Museum of Optimism
-type: Digital
-role: Design + Code
+client: Refugee Action
+type: Branding
+role: Creative Director
 image: share-image.png
 ---
 ### Brief 
