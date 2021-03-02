@@ -6,7 +6,7 @@ function zigZag() {
   const tl = gsap.timeline({
         scrollTrigger: {
         trigger: '.zig-zag',
-        start: 'top 90%',
+        start: 'top 75%',
         end: 'bottom 50%',
         toggleActions: 'play none none reverse'
       }
