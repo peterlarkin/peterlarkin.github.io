@@ -12,9 +12,11 @@
     position: relative;
     opacity: 0;
     transform: translateY(-$space * 2);
+    z-index: 1;
 
     &:nth-child(1) {
       transform: translateY(0);
+      z-index: 2;
     }
   }
 }
