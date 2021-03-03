@@ -150,7 +150,8 @@ function scrollAnimation() {
     .addLabel('sphere', '-=0.1')
     .to(sphere.scale, { x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
     .to(sphere.position, { y: 2.0, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
-    .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere');
+    .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
+    .set(container, { opacity: 0 });
 }
 
 function render () {
@@ -176,6 +177,11 @@ function onWindowResize() {
   renderer.setSize( containerWidth, containerHeight );
 }
 
+function onWindowLoad() {
+  // Render on window load to avoid weird glitch if page is not at top.
+  renderer.render(scene, camera);
+}
+
 export default function() {
   // Create Stats: 0 FPS, 1 MS, 2 MN
   stats.showPanel( 0 );
@@ -183,8 +189,7 @@ export default function() {
   // Add stats panel to DOM
   document.body.appendChild( stats.dom );
 
-  // Render canvas and then start render loop
-  renderer.render(scene, camera);
+  // Start render loop
   requestAnimationFrame( render );
 
   // Setup animations
@@ -193,4 +198,6 @@ export default function() {
 
   // Add resize listener
   window.addEventListener( 'resize', onWindowResize, false );
+  // Add load listener
+  window.addEventListener('load', onWindowLoad, false);
 }
