@@ -6,4 +6,21 @@
   @include media($m-screen-up) {
     letter-spacing: rem(3);
   }
+
+  &--link {
+    padding-bottom: rem(3);
+    text-decoration: none;
+    text-shadow: 1px 0 0 $dark-green, 0 1px 0 $dark-green, -1px 0 0 $dark-green;
+    background-repeat: no-repeat;
+    background-image:
+      linear-gradient($yellow, $yellow),
+      linear-gradient($light-blue, $light-blue);
+    background-size: 100% 1px, 0 1px;
+    background-position: right 100%, left 100%;
+    transition: background-size 0.2s ease-in-out;
+
+    &:hover {
+      background-size: 0 1px, 100% 1px;
+    }
+  }
 }

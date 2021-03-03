@@ -1,9 +1,18 @@
 <footer class="footer">
-  <ul class="footer__links">
-    <li><a href="https://www.instagram.com/organisedfun_/">Instagram</a></li>
-    <li><a href="https://www.linkedin.com/in/brendasjahrial/">LinkedIn</a></li>
-    <li><a href="mailto:brenda.sjahrial@gmail.com">Email</a></li>
-  </ul>
+  <div class="footer__inner">
+    <h4>Say hello</h4>
 
-  <p>Last updated on <time datetime="{{ build.timestamp | formatISO }}">{{ build.timestamp | format("dd LLL yyyy") }}</time></p>
+    <ul class="footer__links">
+      {# <li>
+        <a href="https://www.instagram.com/larkinslair" class="label label--link">Instagram</a>
+      </li> #}
+      <li>
+        <a href="https://www.linkedin.com/in/peter-larkin/" class="label label--link">LinkedIn</a>
+      </li>
+      <li>
+        <a href="mailto:prlarkin@me.com" class="label label--link">Email</a>
+      </li>
+    </ul>
+  </div>
+  {# <p>Last updated on <time datetime="{{ build.timestamp | formatISO }}">{{ build.timestamp | format("dd LLL yyyy") }}</time></p> #}
 </footer>

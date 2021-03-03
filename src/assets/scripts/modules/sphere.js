@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import Stats from 'stats.js';
+// import Stats from 'stats.js';
 import noise from 'perlin.js';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -13,7 +13,7 @@ const FAR = 50;
 
 const container = document.querySelector('#js-sphere');
 const highlights = document.querySelector('#js-highlights');
-const stats = new Stats();
+// const stats = new Stats();
 const clock = new THREE.Clock();
 
 let containerWidth = container.offsetWidth;
@@ -151,11 +151,11 @@ function scrollAnimation() {
     .to(sphere.scale, { x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
     .to(sphere.position, { y: 2.0, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
     .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
-    .set(container, { opacity: 0 });
+    .set(container, { visibility: 'hidden' });
 }
 
 function render () {
-  stats.begin();
+  // stats.begin();
 
   if (inView) {
     renderer.render(scene, camera);
@@ -163,7 +163,7 @@ function render () {
     updateSphereGeometry();
   }
 
-  stats.end();
+  // stats.end();
 
   // Schedule the next frame.
   requestAnimationFrame(render);
@@ -184,10 +184,10 @@ function onWindowLoad() {
 
 export default function() {
   // Create Stats: 0 FPS, 1 MS, 2 MN
-  stats.showPanel( 0 );
+  // stats.showPanel( 0 );
 
   // Add stats panel to DOM
-  document.body.appendChild( stats.dom );
+  // document.body.appendChild( stats.dom );
 
   // Start render loop
   requestAnimationFrame( render );

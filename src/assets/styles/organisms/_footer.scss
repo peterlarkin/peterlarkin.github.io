@@ -1,14 +1,26 @@
 .footer {
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: 0 $gtr;
-  font-size: rem(16);
-  padding-top: $gtr;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: $darker-green;
 
-  @include media($m-screen-up) {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+  &__inner {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: ($gtr * 2) $gtr;
+    font-size: rem(16);
+
+    @include media($m-screen-up) {
+      padding: ($gtr * 4) $gtr;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+  }
+
+  h4 {
+    @extend h1;
   }
 
   &__links {
@@ -33,10 +45,6 @@
         content: "";
         margin: 0;
       }
-    }
-
-    a {
-      @include linkUnderline;
     }
   }
 }

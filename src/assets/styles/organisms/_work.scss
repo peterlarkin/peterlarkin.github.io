@@ -1,7 +1,7 @@
 .work {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  padding-bottom: ($gtr * 2);
+  padding-bottom: ($gtr * 6);
 
   &__list {
     @include listReset;

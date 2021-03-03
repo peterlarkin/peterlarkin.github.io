@@ -14,8 +14,7 @@
     padding: ($space * 2) 0;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: darken($dark-green, 2%);
     transform: translateX($gtr);
   }
