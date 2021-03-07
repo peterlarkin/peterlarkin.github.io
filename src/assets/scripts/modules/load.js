@@ -1,9 +1,9 @@
-import gsap from 'gsap';
+// import gsap from 'gsap';
 
-function loadAnimation() {
+function loadAnimation () {
   console.log('Loaded');
 }
 
-export default function() {
+export default function () {
   window.addEventListener('load', loadAnimation);
 }

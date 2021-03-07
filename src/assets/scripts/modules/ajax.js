@@ -5,17 +5,16 @@ let hideContent, delay, request;
 const container = document.querySelector('#js-ajax-container');
 const loader = document.querySelector('#js-loader');
 
-function handleClick(event) {
+function handleClick (event) {
   const link = event.target.closest('.js-ajax-link');
 
   if (link) {
     event.preventDefault();
     loadAjaxContent(link.href, false);
-    return;
   }
 }
 
-function loadAjaxContent(url, isPopState) {
+function loadAjaxContent (url, isPopState) {
   const currentContent = document.querySelector('#js-ajax-content');
   // Animate the loader
   hideContent = gsap.timeline()
@@ -27,7 +26,7 @@ function loadAjaxContent(url, isPopState) {
     })
     .to(loader, {
       opacity: 1,
-      duration: 0.3,
+      duration: 0.3
       // ease: "power2.out"
     });
 
@@ -42,9 +41,9 @@ function loadAjaxContent(url, isPopState) {
   delay = new Promise(resolve => setTimeout(resolve, 900));
 }
 
-function processAjax(response, url, isPopState) {
+function processAjax (response, url, isPopState) {
   const parser = new DOMParser();
-  const doc = parser.parseFromString(response.data,"text/html");
+  const doc = parser.parseFromString(response.data, 'text/html');
   const content = doc.querySelector('#js-ajax-content');
   const bodyClass = doc.querySelector('body').classList;
 
@@ -73,17 +72,17 @@ function processAjax(response, url, isPopState) {
       }, 'fade')
       .to(loader, {
         opacity: 0,
-        duration: 0.3,
+        duration: 0.3
       }, 'fade')
       .set(loader, { display: 'none' });
 
     // If the new page has a class on the body element
     // Make sure it gets set here.
-    if (bodyClass != "") {
-      document.body.classList = "";
+    if (bodyClass !== '') {
+      document.body.classList = '';
       document.body.classList.add(bodyClass);
     } else {
-      document.body.classList = "";
+      document.body.classList = '';
     }
 
     // Update browser history
@@ -93,11 +92,11 @@ function processAjax(response, url, isPopState) {
   });
 }
 
-function handlePop(event) {
+function handlePop (event) {
   loadAjaxContent(event.state.url, true);
 }
 
-export default function() {
+export default function () {
   document.addEventListener('click', handleClick);
   window.addEventListener('popstate', handlePop);
 

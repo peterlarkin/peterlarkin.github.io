@@ -1,12 +1,16 @@
-export default {
+module.exports = {
   env: {
     browser: true,
     es2021: true
   },
-  extends: 'eslint:recommended',
+  extends: [
+    'standard'
+  ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  rules: {}
+  rules: {
+    semi: [2, 'always']
+  }
 };
