@@ -1,8 +1,9 @@
 .header {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: baseline;
-  @include containerPadding;
+  &__inner {
+    @extend .container;
+    padding-top: ($gtr * 2);
+    padding-bottom: ($gtr * 2);
+  }
 
   .home & {
     display: none;
