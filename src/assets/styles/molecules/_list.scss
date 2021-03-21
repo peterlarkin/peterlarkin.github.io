@@ -1,0 +1,18 @@
+.list {
+  list-style-type: none;
+  padding: 0;
+  font-size: rem(20);
+  line-height: 1.4;
+
+  &__item {
+    display: flex;
+    align-items: baseline;
+
+    &::before {
+      content: '\26AC';
+      font-size: rem(15);
+      color: $yellow;
+      margin-right: $gtr / 2;
+    }
+  }
+}

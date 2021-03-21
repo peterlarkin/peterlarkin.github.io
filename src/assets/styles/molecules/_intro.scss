@@ -45,6 +45,7 @@
     align-items: center;
     padding-bottom: $gtr * 2;
     transform: translateX(-$gtr + rem(2));
+    grid-column: auto / span 12;
 
     .icon {
       margin-right: $gtr;

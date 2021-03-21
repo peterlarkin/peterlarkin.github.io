@@ -1,3 +1,59 @@
 .about {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10;
 
+  &.is-hidden {
+    display: none;
+  }
+
+  &__inner {
+    position: relative;
+    margin-top: $gtr * 4;
+    margin-right: $gtr * 4;
+    padding: $gtr * 4;
+    background: $light-blue;
+    color: $darker-green;
+    transform: translateX(-100%);
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  &__label {
+    position: relative;
+    grid-column: auto / span 1;
+
+    .label {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: rotate(90deg) translateY(-50%);
+      transform-origin: left top;
+
+      span {
+        display: inline-block;
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &__bio,
+  &__clients {
+    grid-column: auto / span 5;
+  }
+
+  &__close {
+    position: fixed;
+    top: $gtr;
+    right: $gtr;
+  }
 }

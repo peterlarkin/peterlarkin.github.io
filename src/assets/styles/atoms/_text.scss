@@ -1,5 +1,12 @@
 .text {
-  &--green {
+  font-size: rem(24);
+  line-height: 1.2;
+
+  &--dark-green {
+    color: $dark-green;
+  }
+
+  &--light-green {
     color: $light-green;
   }
 

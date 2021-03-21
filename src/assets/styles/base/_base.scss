@@ -17,6 +17,10 @@ body {
   color: $light-blue;
   background: $darker-green;
   font-family: $ff;
+
+  &.modal-open {
+    overflow: hidden;
+  }
 }
 
 main {

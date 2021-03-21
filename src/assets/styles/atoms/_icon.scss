@@ -5,12 +5,15 @@
 }
 
 .icon--plus {
-  width: rem(15);
-  height: rem(15);
+  padding: rem(7.5);
 
   line {
     stroke: $light-blue;
   }
+}
+
+.icon--close {
+  padding: rem(5);
 }
 
 .icon--eye {
