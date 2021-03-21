@@ -13,12 +13,18 @@
 
   &__inner {
     position: relative;
-    margin-top: $gtr * 4;
-    margin-right: $gtr * 4;
-    padding: $gtr * 4;
+    margin-top: $gtr * 2;
+    margin-right: $gtr * 2;
+    padding: ($gtr * 4) ($gtr * 2);
     background: $light-blue;
     color: $darker-green;
-    transform: translateX(-100%);
+    min-height: calc(100% - #{$gtr * 4});
+
+    @include media($m-screen-up) {
+      margin-top: $gtr * 4;
+      margin-right: $gtr * 4;
+      padding: $gtr * 4;
+    }
   }
 
   &__content {
@@ -35,9 +41,13 @@
     .label {
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: rotate(90deg) translateY(-50%);
+      left: 0;
+      transform: rotate(90deg) translate(($gtr/2), -50%);
       transform-origin: left top;
+
+      @include media($m-screen-up) {
+        left: 50%;
+      }
 
       span {
         display: inline-block;
@@ -48,12 +58,21 @@
 
   &__bio,
   &__clients {
-    grid-column: auto / span 5;
+    grid-column: auto / span 11;
+
+    @include media($m-screen-up) {
+      grid-column: auto / span 5;
+    }
   }
 
   &__close {
-    position: fixed;
+    position: absolute;
     top: $gtr;
     right: $gtr;
+
+    @include media($m-screen-up) {
+      top: $gtr * 2;
+      right: $gtr * 2;
+    }
   }
 }
