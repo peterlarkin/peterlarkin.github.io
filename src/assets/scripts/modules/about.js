@@ -18,7 +18,7 @@ const aboutAnimation = gsap.timeline({
 function openAbout () {
   document.body.classList.add('modal-open');
   about.classList.remove('is-hidden');
-  aboutAnimation.play();
+  aboutAnimation.timeScale(1).play();
 }
 
 function closeAbout () {
