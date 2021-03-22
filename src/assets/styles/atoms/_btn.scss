@@ -2,6 +2,10 @@
   @include btnReset;
 
   &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
     outline: $yellow 1px solid;
     outline-offset: rem(1);
   }
@@ -15,7 +19,9 @@
     background-repeat: no-repeat;
     background-size: 0 rem(1);
     background-position: left top, right bottom;
-    transition: background 0.2s 0.2s ease-in-out;
+    transition:
+      background 0.2s 0.2s ease-in-out,
+      opacity 0.1s ease-out;
 
     &::before,
     &::after {
@@ -48,6 +54,10 @@
         background-size: rem(1) 100%;
       }
     }
+
+    &:active {
+      opacity: 0.5;
+    }
   }
 
   &--iris-text {
@@ -55,7 +65,8 @@
     transition:
       background 0.2s 0.2s ease-in-out,
       letter-spacing 0.4s ease-out,
-      padding 0.4s ease-out;
+      padding 0.4s ease-out,
+      opacity 0.1s ease-out;
 
     &:hover {
       letter-spacing: rem(5);

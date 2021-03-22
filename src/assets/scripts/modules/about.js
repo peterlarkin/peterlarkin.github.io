@@ -19,6 +19,8 @@ function openAbout () {
   document.body.classList.add('modal-open');
   about.classList.remove('is-hidden');
   aboutAnimation.timeScale(1).play();
+  document.querySelector('#js-about-close').focus();
+  // TODO: Make all links outside about modal not focusable.
 }
 
 function closeAbout () {
@@ -28,6 +30,7 @@ function closeAbout () {
 function hideAbout () {
   document.body.classList.remove('modal-open');
   about.classList.add('is-hidden');
+  document.querySelector('#js-about-open').focus();
 }
 
 function handleClick (event) {

@@ -39,6 +39,11 @@ main {
 
 a {
   color: currentColor;
+
+  &:focus-visible {
+    outline: 1px dotted currentColor;
+    outline-offset: rem(3);
+  }
 }
 
 img {
