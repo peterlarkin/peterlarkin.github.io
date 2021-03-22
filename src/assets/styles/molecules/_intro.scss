@@ -27,6 +27,10 @@
     }
   }
 
+  &__btn {
+    margin-left: rem(5);
+  }
+
   &__canvas {
     grid-column: 7 / span 6;
     display: flex;

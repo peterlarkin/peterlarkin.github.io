@@ -1,38 +1,77 @@
 .btn {
   @include btnReset;
-  color: $light-blue;
 
-  &--dark-green {
-    color: $dark-green;
+  &:focus {
+    outline: $yellow 1px solid;
+    outline-offset: rem(1);
   }
 
-  &--icon {
-    svg {
-      margin-right: $gtr / 2;
-    }
-  }
-
-  &--brackets {
-    margin-left: $gtr / 2;
-    transition: letter-spacing 0.3s ease-in-out;
+  &--iris {
+    position: relative;
+    color: $light-blue;
+    background-image:
+      linear-gradient($light-blue, $light-blue),
+      linear-gradient($light-blue, $light-blue);
+    background-repeat: no-repeat;
+    background-size: 0 rem(1);
+    background-position: left top, right bottom;
+    transition: background 0.2s 0.2s ease-in-out;
 
     &::before,
     &::after {
-      color: $yellow;
+      content: '';
+      position: absolute;
+      top: 0;
+      width: rem(1);
+      height: 100%;
+      background-repeat: no-repeat;
+      background-image: linear-gradient($light-blue, $light-blue);
+      transition: background 0.2s ease-in-out;
+      background-size: rem(1) 0;
     }
 
     &::before {
-      content: '[';
-      margin-right: rem(3);
+      left: 0;
+      background-position: left bottom;
     }
 
     &::after {
-      content: ']';
-      margin-left: rem(3);
+      right: 0;
+      transition-delay: 0.4s;
     }
 
     &:hover {
-      letter-spacing: rem(8);
+      background-size: 100% rem(1);
+
+      &::before,
+      &::after {
+        background-size: rem(1) 100%;
+      }
+    }
+  }
+
+  &--iris-text {
+    padding: rem(4) rem(4) rem(4) rem(6);
+    transition:
+      background 0.2s 0.2s ease-in-out,
+      letter-spacing 0.4s ease-out,
+      padding 0.4s ease-out;
+
+    &:hover {
+      letter-spacing: rem(5);
+      padding-left: rem(8);
+    }
+  }
+
+  &--iris-yellow {
+    padding: rem(5);
+    background-image:
+      linear-gradient($dark-green, $dark-green),
+      linear-gradient($dark-green, $dark-green);
+
+    &::before,
+    &::after {
+      background-image: linear-gradient($dark-green, $dark-green);
     }
   }
 }
