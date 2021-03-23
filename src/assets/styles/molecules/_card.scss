@@ -15,8 +15,16 @@
   }
 
   &:hover {
-    background-color: darken($dark-green, 2%);
+    background-color: $darker-green;
     transform: translateX($gtr);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    background-color: $darker-green;
   }
 
   &__main {
