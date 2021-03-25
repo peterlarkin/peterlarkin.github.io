@@ -1,9 +1,11 @@
 .label {
   text-transform: uppercase;
-  font-size: rem(16);
+  font-size: rem(14);
   letter-spacing: rem(1.5);
+  line-height: 1.2;
 
   @include media($m-screen-up) {
+    font-size: rem(16);
     letter-spacing: rem(3);
   }
 

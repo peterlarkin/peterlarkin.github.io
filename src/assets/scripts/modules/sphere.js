@@ -47,7 +47,6 @@ function createRenderer () {
   const renderer = new THREE.WebGLRenderer({
     antialias: true
   });
-  renderer.gammaFactor = 2.2;
   renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.setSize(containerWidth, containerHeight);
   container.appendChild(renderer.domElement);
@@ -136,29 +135,33 @@ function spikeAnimation () {
 }
 
 function scrollAnimation () {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '.intro',
-      start: 'top top',
-      end: 'bottom 10%',
-      scrub: true,
-      onLeave: () => { inView = false; },
-      onEnterBack: () => { inView = true; }
+  ScrollTrigger.matchMedia({
+    '(min-width: 768px)': function () {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: '.intro',
+          start: 'top top',
+          end: 'bottom 10%',
+          scrub: 0.1,
+          onLeave: () => { inView = false; },
+          onEnterBack: () => { inView = true; }
+        }
+      })
+        .to('.intro__text h1', {
+          opacity: 0, x: 20, duration: 0.2, ease: 'power2.in'
+        })
+        .to('.intro__text p', {
+          opacity: 0, x: -20, duration: 0.2, ease: 'power2.in'
+        }, '-=0.1')
+        .addLabel('sphere', '-=0.1')
+        .to(sphere.scale, {
+          x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut'
+        }, 'sphere')
+        .to(sphere.position, { y: 2.0, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
+        .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
+        .set(container, { visibility: 'hidden' });
     }
-  })
-    .to('.intro__text h1', {
-      opacity: 0, x: 20, duration: 0.2, ease: 'power2.in'
-    })
-    .to('.intro__text p', {
-      opacity: 0, x: -20, duration: 0.2, ease: 'power2.in'
-    }, '-=0.1')
-    .addLabel('sphere', '-=0.1')
-    .to(sphere.scale, {
-      x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut'
-    }, 'sphere')
-    .to(sphere.position, { y: 2.0, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
-    .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
-    .set(container, { visibility: 'hidden' });
+  });
 }
 
 function render () {

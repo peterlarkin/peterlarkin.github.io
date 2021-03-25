@@ -11,7 +11,11 @@
   }
 
   &--large {
-    font-size: rem(36);
-    letter-spacing: rem(-0.6);
+    font-size: rem(28);
+
+    @include media($m-screen-up) {
+      font-size: rem(36);
+      letter-spacing: rem(-0.6);
+    }
   }
 }
