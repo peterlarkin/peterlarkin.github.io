@@ -7,9 +7,10 @@ import { vShader, fShader } from './shaders';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const VIEW_ANGLE = 40;
-const NEAR = 0.1;
-const FAR = 50;
+const fov = 40;
+const near = 0.1;
+const far = 50;
+const cameraZ = 4;
 
 const container = document.querySelector('#js-sphere');
 // const highlights = document.querySelector('#js-highlights');
@@ -54,8 +55,7 @@ function createRenderer () {
 }
 
 function createCamera () {
-  const camera = new THREE.PerspectiveCamera(VIEW_ANGLE, containerWidth / containerHeight, NEAR, FAR);
-  camera.position.z = 4;
+  const camera = new THREE.PerspectiveCamera(fov, containerWidth / containerHeight, near, far);
   scene.add(camera);
   return camera;
 }
@@ -96,8 +96,7 @@ const vertices = position.array;
 const updatedVertices = new Float32Array(length);
 const newPosition = new THREE.BufferAttribute(updatedVertices, 3);
 const v = new THREE.Vector3();
-let x; let y; let
-  z;
+let x; let y; let z;
 let index;
 
 function updateSphereGeometry () {
@@ -108,8 +107,12 @@ function updateSphereGeometry () {
     z = vertices[index++];
     v.set(x, y, z);
     v.normalize()
-      .multiplyScalar(1 + 0.09 *
-        noise.simplex3(v.x * spikes.height + (uniforms.u_time.value * 0.3), v.y * spikes.height, v.z * spikes.height));
+      .multiplyScalar(1.0 + 0.09 *
+        noise.simplex3(
+          v.x * spikes.height + (uniforms.u_time.value * 0.3),
+          v.y * spikes.height,
+          v.z * spikes.height
+        ));
     updatedVertices[index - 3] = v.x;
     updatedVertices[index - 2] = v.y;
     updatedVertices[index - 1] = v.z;
@@ -157,7 +160,17 @@ function scrollAnimation () {
         .to(sphere.scale, {
           x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut'
         }, 'sphere')
-        .to(sphere.position, { y: 2.0, duration: 0.8, ease: 'sine.InOut' }, 'sphere')
+        .to(sphere.position, {
+          y: function () {
+            const boundingBox = new THREE.Box3();
+            boundingBox.setFromObject(sphere);
+            const vec = new THREE.Vector2();
+            boundingBox.getSize(vec);
+            return vec.y + 0.5;
+          },
+          duration: 0.8,
+          ease: 'sine.InOut'
+        }, 'sphere')
         .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
         .set(container, { visibility: 'hidden' });
     }
@@ -185,11 +198,26 @@ function onWindowResize () {
   camera.aspect = containerWidth / containerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(containerWidth, containerHeight);
+  setCameraZoom();
 }
 
 function onWindowLoad () {
   // Render on window load to avoid weird glitch if page is not at top.
   renderer.render(scene, camera);
+}
+
+function setCameraZoom () {
+  const size = new THREE.Vector2();
+  renderer.getSize(size);
+  const portrait = (size.x < size.y);
+  // TODO: Fix magic number.
+  const fullWidth = (size.x >= 614);
+
+  if (camera.aspect < 1 && portrait && !fullWidth) {
+    camera.position.z = cameraZ + (2 - (camera.aspect * camera.aspect));
+  } else {
+    camera.position.z = cameraZ;
+  }
 }
 
 export default function () {
@@ -201,6 +229,7 @@ export default function () {
 
   // Start render loop
   requestAnimationFrame(render);
+  setCameraZoom();
 
   // Setup animations
   spikeAnimation();
