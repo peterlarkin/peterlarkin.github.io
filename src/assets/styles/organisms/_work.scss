@@ -1,11 +1,19 @@
 .work {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(16, 1fr);
   padding-bottom: ($gtr * 6);
+
+  @include media($m-screen-up) {
+    grid-template-columns: repeat(12, 1fr);
+  }
 
   &__list {
     @include listReset;
-    grid-column: 4 / span 9;
+    grid-column: 4 / span 13;
+
+    @include media($m-screen-up) {
+      grid-column: 4 / span 9;
+    }
   }
 
   &__item {

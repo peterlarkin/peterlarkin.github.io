@@ -2,9 +2,9 @@
   position: relative;
   background-color: $dark-green;
   border: $border-primary;
-  margin-top: rem(-4);
+  margin-top: rem(-2);
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(12, 1fr);
   padding: $space 0;
   text-decoration: none;
   color: $yellow;
@@ -12,6 +12,7 @@
 
   @include media($m-screen-up) {
     padding: ($space * 2) 0;
+    grid-template-columns: repeat(9, 1fr);
   }
 
   &:hover {
@@ -29,12 +30,17 @@
 
   &__main {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-column: auto / span 8;
+    grid-template-columns: repeat(9, 1fr);
+    grid-column: auto / span 10;
+
+    @include media($m-screen-up) {
+      grid-template-columns: repeat(8, 1fr);
+      grid-column: auto / span 8;
+    }
   }
 
   &__details {
-    grid-column: auto / span 8;
+    grid-column: auto / span 9;
     padding-left: $space;
 
     @include media($m-screen-up) {
@@ -65,7 +71,7 @@
 
   &__role {
     @extend h4;
-    grid-column: auto / span 8;
+    grid-column: auto / span 9;
     padding-left: $space;
     color: $light-blue;
 
@@ -77,11 +83,12 @@
   }
 
   &__expand {
-    grid-column: 9 / span 1;
+    grid-column: 11 / span 2;
     justify-content: flex-end;
     padding-right: $space;
 
     @include media($m-screen-up) {
+      grid-column: 9 / span 1;
       padding-right: ($space * 2);
     }
   }

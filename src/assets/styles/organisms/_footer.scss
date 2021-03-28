@@ -22,6 +22,11 @@
 
   h4 {
     @extend h1;
+    margin-bottom: $gtr / 2;
+
+    @include media($m-screen-up) {
+      margin-bottom: 0;
+    }
   }
 
   &__links {
