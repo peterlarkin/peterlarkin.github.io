@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 const fov = 40;
 const near = 0.1;
 const far = 50;
-const cameraZ = 4;
 
 const container = document.querySelector('#js-sphere');
 // const highlights = document.querySelector('#js-highlights');
@@ -21,6 +20,7 @@ let containerWidth = container.offsetWidth;
 let containerHeight = container.offsetHeight;
 const spikes = { height: 0.6 };
 let inView = true;
+let cameraZoomNeedsUpdate = true;
 
 const scene = createScene();
 const renderer = createRenderer();
@@ -124,6 +124,11 @@ function updateSphereGeometry () {
   sphere.geometry.verticesNeedUpdate = true;
   sphere.rotation.y -= 0.005;
   sphere.rotation.x -= 0.01;
+
+  if (cameraZoomNeedsUpdate) {
+    fitCameraToObject(sphere);
+    cameraZoomNeedsUpdate = false;
+  }
 }
 
 function spikeAnimation () {
@@ -161,12 +166,13 @@ function scrollAnimation () {
           x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut'
         }, 'sphere')
         .to(sphere.position, {
-          y: function () {
+          y: () => {
             const boundingBox = new THREE.Box3();
             boundingBox.setFromObject(sphere);
             const vec = new THREE.Vector2();
             boundingBox.getSize(vec);
-            return vec.y + 0.5;
+            const newY = vec.y / 2 + camera.position.z / 2;
+            return newY;
           },
           duration: 0.8,
           ease: 'sine.InOut'
@@ -198,7 +204,7 @@ function onWindowResize () {
   camera.aspect = containerWidth / containerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(containerWidth, containerHeight);
-  setCameraZoom();
+  cameraZoomNeedsUpdate = true;
 }
 
 function onWindowLoad () {
@@ -206,19 +212,42 @@ function onWindowLoad () {
   renderer.render(scene, camera);
 }
 
-function setCameraZoom () {
-  const size = new THREE.Vector2();
-  renderer.getSize(size);
-  const portrait = (size.x < size.y);
-  // TODO: Fix magic number.
-  const fullWidth = (size.x >= 614);
+function fitCameraToObject (object) {
+  let offset = 1;
 
-  if (camera.aspect < 1 && portrait && !fullWidth) {
-    camera.position.z = cameraZ + (2 - (camera.aspect * camera.aspect));
-  } else {
-    camera.position.z = cameraZ;
+  const boundingBox = new THREE.Box3();
+  boundingBox.setFromObject(object);
+
+  const rendererSize = new THREE.Vector2();
+  renderer.getSize(rendererSize);
+
+  // Check for portrait renderer aspect
+  if (rendererSize.x < rendererSize.y) {
+    // Progressively increase offset the more portrait the renderer is
+    if (camera.aspect < 0.75) {
+      offset = 1.5;
+    }
+    if (camera.aspect < 0.5) {
+      offset = 2.5;
+    }
   }
-}
+
+  // The maxDim is set with this number as it changes as the blob morphs
+  // 3.3 is the maximum either the width or height becomes in the animation
+  const maxDim = 3.3;
+  const fov = camera.fov * (Math.PI / 180);
+  let cameraZ = Math.abs(maxDim / 4 * Math.tan(fov * 2));
+
+  // Zoom out a little so that objects don't fill the screen
+  cameraZ *= offset;
+  camera.position.z = cameraZ;
+
+  const minZ = boundingBox.min.z;
+  const cameraToFarEdge = (minZ < 0) ? -minZ + cameraZ : cameraZ - minZ;
+
+  camera.far = cameraToFarEdge * 3;
+  camera.updateProjectionMatrix();
+};
 
 export default function () {
   // Create Stats: 0 FPS, 1 MS, 2 MN
@@ -229,7 +258,6 @@ export default function () {
 
   // Start render loop
   requestAnimationFrame(render);
-  setCameraZoom();
 
   // Setup animations
   spikeAnimation();
