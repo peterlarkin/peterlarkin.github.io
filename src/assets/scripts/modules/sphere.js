@@ -1,4 +1,21 @@
-import * as THREE from 'three';
+import {
+  Clock,
+  UniformsUtils,
+  UniformsLib,
+  Color,
+  Scene,
+  WebGLRenderer,
+  sRGBEncoding,
+  PerspectiveCamera,
+  PointLight,
+  ShaderMaterial,
+  SphereBufferGeometry,
+  Mesh,
+  BufferAttribute,
+  Vector2,
+  Vector3,
+  Box3
+} from 'three';
 // import Stats from 'stats.js';
 import noise from 'perlin.js';
 import gsap from 'gsap';
@@ -14,7 +31,7 @@ const far = 50;
 const container = document.querySelector('#js-sphere');
 // const highlights = document.querySelector('#js-highlights');
 // const stats = new Stats();
-const clock = new THREE.Clock();
+const clock = new Clock();
 
 let containerWidth = container.offsetWidth;
 let containerHeight = container.offsetHeight;
@@ -27,44 +44,44 @@ const renderer = createRenderer();
 const camera = createCamera();
 createLights();
 
-const uniforms = THREE.UniformsUtils.merge([
-  THREE.UniformsLib.lights,
+const uniforms = UniformsUtils.merge([
+  UniformsLib.lights,
   {
     u_time: { value: 0.0 },
-    color1: { type: 'c', value: new THREE.Color(0xFFE78E) },
-    color2: { type: 'c', value: new THREE.Color(0xAADDD6) }
+    color1: { type: 'c', value: new Color(0xFFE78E) },
+    color2: { type: 'c', value: new Color(0xAADDD6) }
   }
 ]);
 
 const sphere = createSphere();
 
 function createScene () {
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x004F48);
+  const scene = new Scene();
+  scene.background = new Color(0x004F48);
   return scene;
 }
 
 function createRenderer () {
-  const renderer = new THREE.WebGLRenderer({
+  const renderer = new WebGLRenderer({
     antialias: true
   });
-  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.outputEncoding = sRGBEncoding;
   renderer.setSize(containerWidth, containerHeight);
   container.appendChild(renderer.domElement);
   return renderer;
 }
 
 function createCamera () {
-  const camera = new THREE.PerspectiveCamera(fov, containerWidth / containerHeight, near, far);
+  const camera = new PerspectiveCamera(fov, containerWidth / containerHeight, near, far);
   scene.add(camera);
   return camera;
 }
 
 function createLights () {
   const lights = [];
-  lights[0] = new THREE.PointLight(0xffffff, 0.4, 0);
-  lights[1] = new THREE.PointLight(0xffffff, 0.4, 0);
-  lights[2] = new THREE.PointLight(0xffffff, 0.4, 0);
+  lights[0] = new PointLight(0xffffff, 0.4, 0);
+  lights[1] = new PointLight(0xffffff, 0.4, 0);
+  lights[2] = new PointLight(0xffffff, 0.4, 0);
 
   lights[0].position.set(0, 200, 0);
   lights[1].position.set(100, 200, 100);
@@ -77,14 +94,14 @@ function createLights () {
 }
 
 function createSphere () {
-  const material = new THREE.ShaderMaterial({
+  const material = new ShaderMaterial({
     vertexShader: vShader,
     fragmentShader: fShader,
     uniforms,
     lights: true
   });
-  const geometry = new THREE.SphereBufferGeometry(1, 128, 128);
-  const sphere = new THREE.Mesh(geometry, material);
+  const geometry = new SphereBufferGeometry(1, 128, 128);
+  const sphere = new Mesh(geometry, material);
   scene.add(sphere);
   return sphere;
 }
@@ -94,8 +111,8 @@ const { count } = position;
 const { length } = position.array;
 const vertices = position.array;
 const updatedVertices = new Float32Array(length);
-const newPosition = new THREE.BufferAttribute(updatedVertices, 3);
-const v = new THREE.Vector3();
+const newPosition = new BufferAttribute(updatedVertices, 3);
+const v = new Vector3();
 let x; let y; let z;
 let index;
 
@@ -173,9 +190,9 @@ function scrollAnimation () {
         // TODO: Fix this when re-adding highlights
         // .to(sphere.position, {
         //   y: () => {
-        //     const boundingBox = new THREE.Box3();
+        //     const boundingBox = new Box3();
         //     boundingBox.setFromObject(sphere);
-        //     const vec = new THREE.Vector2();
+        //     const vec = new Vector2();
         //     boundingBox.getSize(vec);
         //     const newY = vec.y / 2 + camera.position.z / 2;
         //     return newY;
@@ -222,10 +239,10 @@ function onWindowLoad () {
 function fitCameraToObject (object) {
   let offset = 1;
 
-  const boundingBox = new THREE.Box3();
+  const boundingBox = new Box3();
   boundingBox.setFromObject(object);
 
-  const rendererSize = new THREE.Vector2();
+  const rendererSize = new Vector2();
   renderer.getSize(rendererSize);
 
   // Check for portrait renderer aspect
