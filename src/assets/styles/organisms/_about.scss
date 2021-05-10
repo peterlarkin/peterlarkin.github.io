@@ -56,6 +56,12 @@
     }
   }
 
+  &__bio {
+    a {
+      @include linkUnderline();
+    }
+  }
+
   &__bio,
   &__clients {
     grid-column: auto / span 11;

@@ -27,14 +27,14 @@
 
 @mixin linkUnderline($bottom: 100%) {
   text-decoration: none;
-  text-shadow: 2px 0 0 $dark-green, 0 2px 0 $dark-green, -2px 0 0 $dark-green;
+  text-shadow: 2px 0 0 $light-blue, 0 2px 0 $light-blue, -2px 0 0 $light-blue;
   background-repeat: no-repeat;
   background-image:
     linear-gradient($yellow, $yellow),
-    linear-gradient($light-blue, $light-blue);
+    linear-gradient($dark-green, $dark-green);
   background-size: 100% 2px, 0 2px;
   background-position: right #{$bottom}, left #{$bottom};
-  transition: background-size 0.5s ease-in;
+  transition: background-size 0.25s ease-in-out;
 
   &:hover {
     background-size: 0 2px, 100% 2px;

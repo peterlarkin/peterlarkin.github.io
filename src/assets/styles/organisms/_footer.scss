@@ -5,8 +5,13 @@
   width: 100%;
   background: $darker-green;
 
+  display: flex;
+  align-items: center;
+  min-height: 50vh;
+
   &__inner {
     @extend .container;
+    width: 100%;
     padding-top: ($gtr * 2);
     padding-bottom: ($gtr * 2);
     font-size: rem(16);

@@ -29,8 +29,8 @@
       z-index: -1;
 
       @include media($m-screen-up) {
-        position: fixed;
-        top: 0;
+        // position: fixed;
+        // top: 0;
       }
     }
   }
