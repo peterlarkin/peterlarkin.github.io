@@ -2,10 +2,10 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
-function zigZag () {
+function zigZag (trigger) {
   gsap.timeline({
     scrollTrigger: {
-      trigger: '.zig-zag',
+      trigger,
       start: 'top 75%',
       end: 'bottom 50%',
       toggleActions: 'play none none reverse'
@@ -20,5 +20,8 @@ function zigZag () {
 }
 
 export default function () {
-  zigZag();
+  const trigger = document.querySelector('#js-zig-zag');
+  if (trigger) {
+    zigZag(trigger);
+  }
 }
