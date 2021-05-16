@@ -2,39 +2,57 @@
   main {
     padding-top: $gtr;
     padding-bottom: ($gtr * 2);
+    color: $white;
 
     @include media($m-screen-up) {
-      padding-top: ($gtr * 2);
+      padding: ($gtr * 6);
     }
+  }
+
+  .label {
+    color: $light-blue;
   }
 
   &__container {
     max-width: $max-width;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
   }
 
-  &__header {
-    margin: $gtr 0;
+  &__info {
+    grid-column: auto / span 3;
+    margin-right: $gtr;
 
-    @include media($m-screen-up) {
-      margin: ($gtr * 2) 0;
+    h2 { margin-bottom: $gtr; }
+
+    hr {
+      border-style: solid;
+      border-color: $yellow;
+      margin-bottom: $gtr * 2;
     }
 
-    h2 { line-height: 1; }
-
     p {
-      color: $yellow;
+      font-size: rem(24);
+      margin-bottom: $gtr * 2;
     }
   }
 
   &__main {
-    h3, h4 {
-      margin-top: $gtr * 3;
+    grid-column: auto / span 9;
+    margin-left: $gtr;
+  }
+
+  &__text {
+    margin-top: $gtr * 2;
+    width: 60%;
+
+    h3 {
+      @extend .label;
     }
 
-    &::after {
-      content: "";
-      display: table;
-      clear: both;
+    p {
+      font-size: rem(24);
+      margin-bottom: $gtr * 2;
     }
   }
 }

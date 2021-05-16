@@ -4,12 +4,22 @@ bodyClass: entry
 ---
 
 <div class="entry__container" id="js-ajax-content">
-  <header class="entry__header">
+  <div class="entry__info">
     <h2>{{ title }}</h2>
-    <p>{{ type }}</p>
-  </header>
+    <hr>
+    <h3 class="label">Client</h3>
+    <p>Refugee Action</p>
+    <h3 class="label">Agency</h3>
+    <p>Nice and Serious</p>
+    <h3 class="label">Role</h3>
+    <p>Creative Director + Design</p>
+  </div>
 
   <div class="entry__main">
-    {{ content | safe }}
+    {% image "refugee-action-1.png", "Image alt" %}
+
+    <div class="entry__text">
+      {{ content | safe }}
+    </div>
   </div>
 </div>
