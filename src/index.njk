@@ -48,38 +48,4 @@ bodyClass: home
       {%- endfor -%}
     </ul>
   </section>
-
-  <section class="about is-hidden" id="js-about">
-
-    <div class="about__inner">
-          <button class="about__close btn btn--iris btn--iris-yellow" id="js-about-close">
-      {% include "./_svgs/icon-close.svg" %}
-    </button>
-      <div class="about__content">
-        <div class="about__label">
-          <span class="label">
-            <span>About</span>
-          </span>
-        </div>
-        <div class="about__bio">
-          <p class="text text--green">Motivated by a desire to solve real-world problems, I bring a mix of strategic thinking, creative ideas and executional detail to help create work that's bold and meaningful. With a strong focus on digital design and coding, I've spent the last ten years working as an all-round creative, leading to my current role as Creative Director at purpose-led creative agency <a href="https://niceandserious.com/">Nice and Serious</a>.</p>
-          <p class="text text--green">During my career, I've helped build brands, digital products and award-winning campaigns that have played a part in shifting perceptions, raising money, driving action and changing policy.</p>
-        </div>
-        <div class="about__label">
-          <span class="label">
-            <span>Selected&nbsp;Clients</span>
-          </span>
-        </div>
-        <div class="about__clients">
-          <div class="text text--green">
-            <ul class="list">
-            {% for client in site.clients %}
-              <li class="list__item">{{ client }}</li>
-            {% endfor %}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 </div>
