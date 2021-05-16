@@ -9,7 +9,7 @@
 
     {# Open graph related #}
     <meta property="og:title" content="{{ title or site.title or site.name }}" />
-    <meta property="og:type" content="{{ type or site.type }}" />
+    <meta property="og:type" content="{{ site.type }}" />
     <meta property="og:url" content="{{ url or site.url }}" />
     <meta property="og:image" content="{% if image %}{{ site.url }}/assets/static/{{ image }}{% else %}{{ site.image }}{% endif %}" />
     <meta property="og:site_name" content="{{ name or site.name }}" />
