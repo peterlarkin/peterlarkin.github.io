@@ -1,5 +1,6 @@
 import axios from 'axios';
 import gsap from 'gsap';
+import about from './about';
 import animations from './animations';
 
 let hideContent, delay, request;
@@ -88,6 +89,7 @@ function processAjax (response, url, isPopState) {
 
     // Initialise interactive elements
     animations();
+    about();
 
     // Update browser history
     if (isPopState === false) {
