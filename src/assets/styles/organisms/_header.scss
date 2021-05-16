@@ -1,12 +1,33 @@
 .header {
-  &__inner {
-    @extend .container;
-    padding-top: ($gtr * 2);
-    padding-bottom: ($gtr * 2);
-  }
 
   .home & {
     display: none;
+  }
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $dark-green;
+  padding-top: ($gtr * 2);
+  padding-bottom: ($gtr * 2);
+
+  &__arrow {
+    padding-left: $gtr;
+  }
+
+  &__inner {
+    max-width: $max-width;
+    padding-left: $gtr;
+    padding-right: $gtr;
+    flex-grow: 1;
+  }
+
+  &__smiley {
+    padding-right: $gtr;
+  }
+
+  h1 {
+    @extend h2;
   }
 
   a {

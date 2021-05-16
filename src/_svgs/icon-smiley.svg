@@ -1,0 +1,8 @@
+<svg viewBox="0 0 30 30" class="icon icon--smiley">
+  <circle cx="14.92" cy="15" r="13.25" fill="none" stroke="#ffe78e" stroke-miterlimit="10" stroke-width="2"/>
+  <ellipse cx="12.83" cy="10.83" rx="1.29" ry="2.35" fill="#ffe78e"/>
+  <ellipse cx="17" cy="10.83" rx="1.29" ry="2.35" fill="#ffe78e"/>
+  <path d="M6.71,14.94S9,20.67,14.92,20.67s8.2-5.73,8.2-5.73" fill="none" stroke="#ffe78e" stroke-miterlimit="10"/>
+  <path d="M22.5,13.2A3.32,3.32,0,0,0,23.16,15a4.61,4.61,0,0,0,1.77.88" fill="none" stroke="#ffe78e" stroke-miterlimit="10"/>
+  <path d="M7.37,13.2A3.24,3.24,0,0,1,6.71,15,4.6,4.6,0,0,1,5,15.85" fill="none" stroke="#ffe78e" stroke-miterlimit="10"/>
+</svg>

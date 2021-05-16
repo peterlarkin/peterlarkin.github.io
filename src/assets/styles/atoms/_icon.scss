@@ -4,20 +4,21 @@
   height: rem(30);
 }
 
-.icon--plus {
-  padding: rem(7.5);
-
-  line {
-    stroke: $light-blue;
-  }
-}
-
 .icon--close {
   padding: rem(5);
 
   line {
     stroke: $dark-green;
   }
+}
+
+.icon--smiley {
+  animation: spin 3.33s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
 }
 
 .icon--eye {
