@@ -178,29 +178,15 @@ function scrollAnimation () {
         .to('.intro__text p', {
           opacity: 0, x: -20, duration: 0.2, ease: 'power2.in'
         }, '-=0.1')
-        .to(container, {
-          y: '-100%',
-          duration: 0.8,
-          ease: 'sine.InOut'
-        }, '-=0.2')
         .addLabel('sphere', '-=0.1')
         .to(sphere.scale, {
           x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut'
         }, 'sphere')
-        // TODO: Fix this when re-adding highlights
-        // .to(sphere.position, {
-        //   y: () => {
-        //     const boundingBox = new Box3();
-        //     boundingBox.setFromObject(sphere);
-        //     const vec = new Vector2();
-        //     boundingBox.getSize(vec);
-        //     const newY = vec.y / 2 + camera.position.z / 2;
-        //     return newY;
-        //   },
-        //   duration: 0.8,
-        //   ease: 'sine.InOut'
-        // }, 'sphere')
-
+        .to(container, {
+          y: '-10%',
+          duration: 0.8,
+          ease: 'sine.InOut'
+        }, 'sphere')
         .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
         .set(container, { visibility: 'hidden' });
     }
