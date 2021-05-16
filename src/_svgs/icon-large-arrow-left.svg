@@ -1,0 +1,4 @@
+<svg viewBox="0 0 90 60" class="icon icon--large-arrow">
+  <line x1="4.33" y1="30.31" x2="90" y2="30.31" fill="none" stroke="#ffe78e" stroke-miterlimit="10" stroke-width="4"/>
+  <polyline points="30.13 3.93 4.33 30.31 30.13 56.07" fill="none" stroke="#ffe78e" stroke-miterlimit="10" stroke-width="4"/>
+</svg>

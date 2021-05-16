@@ -22,25 +22,23 @@ bodyClass: entry
         <ul class="glide__slides">
           {% for image in images %}
           <li class="glide__slide">
-            {% image image, "Image alt" %}
+            {% image image[0], image[1] %}
           </li>
           {% endfor %}
         </ul>
       </div>
-      <div class="glide__controls">
-        <div class="glide__bullets" data-glide-el="controls[nav]">
-          {% for image in images %}
-          <button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
-          {% endfor %}
-        </div>
-        <div class="glide__arrows" data-glide-el="controls">
+      <div class="glide__arrows" data-glide-el="controls">
           <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-            {% include "../_svgs/icon-arrow-left.svg" %}
+            {% include "../_svgs/icon-large-arrow-left.svg" %}
           </button>
           <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-            {% include "../_svgs/icon-arrow-left.svg" %}
+            {% include "../_svgs/icon-large-arrow-right.svg" %}
           </button>
         </div>
+      <div class="glide__bullets" data-glide-el="controls[nav]">
+        {% for image in images %}
+        <button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
+        {% endfor %}
       </div>
     </div>
 

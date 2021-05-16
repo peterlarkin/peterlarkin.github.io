@@ -1,40 +1,100 @@
 .glide {
-  &__controls {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__bullets {
-
-  }
-
-  &__bullet {
-    width: rem(12);
-    height: rem(12);
-    border: $default-border-width solid $white;
-    border-radius: rem(6);
-    padding: 0;
-    background: none;
-    cursor: pointer;
-    transition: background ease-in-out 0.2s;
-
-    &--active {
-      background: $white;
-    }
+  &__track {
+    position: relative;
   }
 
   &__arrows {
-
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
   }
 
   &__arrow {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 100%;
     border: 0;
     padding: 0;
     background: none;
     cursor: pointer;
 
-    &--right {
-      margin-left: $space;
+    svg {
+      opacity: 0;
+      position: relative;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover svg{
+      opacity: 1;
+    }
+  }
+
+  &__arrow--left {
+    justify-content: flex-start;
+
+    svg {
+      left: - $gtr * 2;
+    }
+
+    &:hover svg {
+      transform: translateX(-$gtr);
+    }
+  }
+
+  &__arrow--right {
+    justify-content: flex-end;
+
+    svg {
+      right: - $gtr * 2;
+    }
+
+    &:hover svg {
+      transform: translateX($gtr);
+    }
+  }
+
+  &__bullets {
+    position: absolute;
+    right: 0;
+    bottom: - $gtr*2;
+  }
+
+  &__bullet {
+    position: relative;
+    width: rem(12);
+    height: rem(12);
+    border: $default-border-width solid $light-blue;
+    border-radius: rem(6);
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    transition: background ease-in-out 0.2s;
+    margin-right: $gtr;
+
+    &--active {
+      background: $light-blue;
+    }
+
+    &::after {
+      content: "/";
+      position: absolute;
+      font-family: $ff;
+      font-size: rem(24);
+      top: rem(-10);
+      right: rem(-16);
+      color: $yellow;
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      &::after {
+        content: "";
+      }
     }
   }
 }

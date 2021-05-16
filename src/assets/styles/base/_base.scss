@@ -40,6 +40,10 @@ main {
   padding-left: $gtr;
   padding-right: $gtr;
   overflow-x: hidden;
+
+  @include media($m-screen-up) {
+    overflow-x: visible;
+  }
 }
 
 a {

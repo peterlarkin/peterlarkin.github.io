@@ -21,6 +21,11 @@
   100% { transform: rotate(360deg); }
 }
 
+.icon--large-arrow {
+  width: rem(90);
+  height: rem(60);
+}
+
 .icon--eye {
   .eye-all {
     transition: transform 0.2s ease-in-out;
