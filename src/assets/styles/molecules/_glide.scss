@@ -1,0 +1,40 @@
+.glide {
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__bullets {
+
+  }
+
+  &__bullet {
+    width: rem(12);
+    height: rem(12);
+    border: $default-border-width solid $white;
+    border-radius: rem(6);
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    transition: background ease-in-out 0.2s;
+
+    &--active {
+      background: $white;
+    }
+  }
+
+  &__arrows {
+
+  }
+
+  &__arrow {
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+
+    &--right {
+      margin-left: $space;
+    }
+  }
+}
