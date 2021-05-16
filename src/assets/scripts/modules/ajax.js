@@ -1,5 +1,6 @@
 import axios from 'axios';
 import gsap from 'gsap';
+import animations from './animations';
 
 let hideContent, delay, request;
 const container = document.querySelector('#js-ajax-container');
@@ -84,6 +85,9 @@ function processAjax (response, url, isPopState) {
     } else {
       document.body.classList = '';
     }
+
+    // Initialise interactive elements
+    animations();
 
     // Update browser history
     if (isPopState === false) {
