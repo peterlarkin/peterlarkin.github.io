@@ -1,47 +1,82 @@
 .glide {
   &__track {
     position: relative;
+    margin-bottom: $gtr;
+
+    @include media($m-screen-up) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+
+    @include media($m-screen-up) {
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
   }
 
   &__arrows {
-    position: absolute;
     display: flex;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+
+    @include media($m-screen-up) {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
   }
 
   &__arrow {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    height: 100%;
     border: 0;
     padding: 0;
     background: none;
     cursor: pointer;
 
-    svg {
-      opacity: 0;
-      position: relative;
-      transition: all 0.2s ease-in-out;
+    @include media($m-screen-up) {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      height: 100%;
     }
 
-    &:hover svg{
+    svg {
+      @include media($m-screen-up) {
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &:hover svg {
       opacity: 1;
     }
   }
 
   &__arrow--left {
     justify-content: flex-start;
+    margin-right: $gtr;
+
+    @include media($m-screen-up) {
+      margin-right: 0;
+    }
 
     svg {
-      left: - $gtr * 2;
+      @include media($m-screen-up) {
+        left: - $gtr * 2;
+      }
     }
 
     &:hover svg {
-      transform: translateX(-$gtr);
+      @include media($m-screen-up) {
+        transform: translateX(-$gtr);
+      }
     }
   }
 
@@ -49,18 +84,24 @@
     justify-content: flex-end;
 
     svg {
-      right: - $gtr * 2;
+      @include media($m-screen-up) {
+        right: - $gtr * 2;
+      }
     }
 
     &:hover svg {
-      transform: translateX($gtr);
+      @include media($m-screen-up) {
+        transform: translateX($gtr);
+      }
     }
   }
 
   &__bullets {
-    position: absolute;
-    right: 0;
-    bottom: - $gtr*2;
+    @include media($m-screen-up) {
+      position: absolute;
+      right: 0;
+      bottom: - $gtr*2;
+    }
   }
 
   &__bullet {
@@ -72,7 +113,6 @@
     padding: 0;
     background: none;
     cursor: pointer;
-    transition: background ease-in-out 0.2s;
     margin-right: $gtr;
 
     &--active {

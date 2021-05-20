@@ -5,6 +5,10 @@
     color: $white;
 
     @include media($m-screen-up) {
+      padding: ($gtr * 3);
+    }
+
+    @include media($l-screen-up) {
       padding: ($gtr * 6);
     }
   }
@@ -15,36 +19,55 @@
 
   &__container {
     max-width: $max-width;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
+
+    @include media($s-screen-up) {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+    }
   }
 
   &__info {
-    grid-column: auto / span 3;
-    margin-right: $gtr;
+    margin-bottom: $gtr * 2;
+
+    @include media($s-screen-up) {
+      grid-column: auto / span 3;
+      margin-right: $gtr;
+      margin-bottom: 0;
+    }
 
     h2 { margin-bottom: $gtr; }
+
+    p, hr {
+      margin-bottom: $gtr;
+
+      @include media($s-screen-up) {
+        margin-bottom: $gtr * 2;
+      }
+    }
 
     hr {
       border-style: solid;
       border-color: $yellow;
-      margin-bottom: $gtr * 2;
     }
 
     p {
       font-size: rem(24);
-      margin-bottom: $gtr * 2;
     }
   }
 
   &__main {
-    grid-column: auto / span 9;
-    margin-left: $gtr;
+    @include media($s-screen-up) {
+      grid-column: auto / span 9;
+      margin-left: $gtr;
+    }
   }
 
   &__text {
     margin-top: $gtr;
-    width: 60%;
+
+    @include media($m-screen-up) {
+      width: 60%;
+    }
 
     h3 {
       @extend .label;

@@ -22,8 +22,13 @@
 }
 
 .icon--large-arrow {
-  width: rem(90);
-  height: rem(60);
+  width: rem(45);
+  height: rem(30);
+
+  @include media($m-screen-up) {
+    width: rem(90);
+    height: rem(60);
+  }
 }
 
 .icon--eye {
