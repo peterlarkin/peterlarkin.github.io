@@ -1,16 +1,21 @@
 ---
 tags: work
 layout: work
-date: 2020-12-03
+date: 2021-05-02
 title: Museum of Optimism
-description: Creating a...
-client: Museum of Optimism
+description: UPDATE
+client: Nice and Serious
+agency: Nice and Serious
 type: Digital
 role: Design + Code
 image: share-image.png
+images:
+  - ["refugee-action-1.png", "Alt text for first image"]
+  - ["refugee-action-1.png", "Alt text for second image"]
+  - ["refugee-action-1.png", "Alt text for third image"]
 ---
 ### Brief 
-Create a campaign to increase applications to WriteNow – Penguin's programme to get more writers from under-represented groups published. 
+Losing relevance after nearly 40 years in the sector, Refugee Action needed a bold new identity to reclaim their voice.
 
 ### Solution
-Define: Author. Show that it means more than you think, and that anyone can shape its definition. 
+We injected urgency and drive into the identity scheme with a dramatic palette and a strong, geometric visual language. 
