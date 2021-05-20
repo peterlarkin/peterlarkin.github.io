@@ -202,7 +202,7 @@ function render () {
   requestAnimationFrame(render);
 }
 
-function onWindowResize () {
+export function onWindowResize () {
   containerWidth = container.offsetWidth;
   containerHeight = container.offsetHeight;
   camera.aspect = containerWidth / containerHeight;
@@ -211,7 +211,7 @@ function onWindowResize () {
   cameraZoomNeedsUpdate = true;
 }
 
-function onWindowLoad () {
+export function onWindowLoad () {
   // Render on window load to avoid weird glitch if page is not at top.
   renderer.render(scene, camera);
 }
