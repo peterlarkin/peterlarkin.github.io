@@ -2,6 +2,7 @@ import axios from 'axios';
 import gsap from 'gsap';
 import about from './about';
 import animations from './animations';
+import sphere from './sphere';
 import slider from './slider';
 
 let hideContent, delay, request;
@@ -91,6 +92,7 @@ function processAjax (response, url, isPopState) {
     // Initialise interactive elements
     animations();
     about();
+    sphere();
     slider();
 
     // Update browser history

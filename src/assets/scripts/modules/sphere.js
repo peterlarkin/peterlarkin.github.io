@@ -16,7 +16,6 @@ import {
   Vector3,
   Box3
 } from 'three';
-// import Stats from 'stats.js';
 import noise from 'perlin.js';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -27,23 +26,7 @@ gsap.registerPlugin(ScrollTrigger);
 const fov = 40;
 const near = 0.1;
 const far = 50;
-
-const container = document.querySelector('#js-sphere');
-// const highlights = document.querySelector('#js-highlights');
-// const stats = new Stats();
-const clock = new Clock();
-
-let containerWidth = container.offsetWidth;
-let containerHeight = container.offsetHeight;
 const spikes = { height: 0.6 };
-let inView = true;
-let cameraZoomNeedsUpdate = true;
-
-const scene = createScene();
-const renderer = createRenderer();
-const camera = createCamera();
-createLights();
-
 const uniforms = UniformsUtils.merge([
   UniformsLib.lights,
   {
@@ -53,7 +36,32 @@ const uniforms = UniformsUtils.merge([
   }
 ]);
 
-const sphere = createSphere();
+// General
+let clock;
+let container;
+let containerWidth;
+let containerHeight;
+let inView;
+let cameraZoomNeedsUpdate;
+
+// THREE scene
+let scene;
+let renderer;
+let camera;
+let sphere;
+
+// For SphereBufferGeometry
+let position;
+let count;
+let length;
+let vertices;
+let updatedVertices;
+let newPosition;
+let v;
+let x;
+let y;
+let z;
+let index;
 
 function createScene () {
   const scene = new Scene();
@@ -105,16 +113,6 @@ function createSphere () {
   scene.add(sphere);
   return sphere;
 }
-
-const position = sphere.geometry.getAttribute('position');
-const { count } = position;
-const { length } = position.array;
-const vertices = position.array;
-const updatedVertices = new Float32Array(length);
-const newPosition = new BufferAttribute(updatedVertices, 3);
-const v = new Vector3();
-let x; let y; let z;
-let index;
 
 function updateSphereGeometry () {
   index = 0;
@@ -194,15 +192,11 @@ function scrollAnimation () {
 }
 
 function render () {
-  // stats.begin();
-
   if (inView) {
     renderer.render(scene, camera);
     uniforms.u_time.value = clock.getElapsedTime();
     updateSphereGeometry();
   }
-
-  // stats.end();
 
   // Schedule the next frame.
   requestAnimationFrame(render);
@@ -260,11 +254,33 @@ function fitCameraToObject (object) {
 };
 
 export default function () {
-  // Create Stats: 0 FPS, 1 MS, 2 MN
-  // stats.showPanel( 0 );
+  container = document.querySelector('#js-sphere');
+  if (!container) {
+    return;
+  }
 
-  // Add stats panel to DOM
-  // document.body.appendChild( stats.dom );
+  // General
+  clock = new Clock();
+  containerWidth = container.offsetWidth;
+  containerHeight = container.offsetHeight;
+  inView = true;
+  cameraZoomNeedsUpdate = true;
+
+  // THREE scene
+  scene = createScene();
+  renderer = createRenderer();
+  camera = createCamera();
+  createLights();
+  sphere = createSphere();
+
+  // SphereBufferGeometry
+  position = sphere.geometry.getAttribute('position');
+  count = position.count;
+  length = position.array.length;
+  vertices = position.array;
+  updatedVertices = new Float32Array(length);
+  newPosition = new BufferAttribute(updatedVertices, 3);
+  v = new Vector3();
 
   // Start render loop
   requestAnimationFrame(render);
