@@ -25,6 +25,7 @@ function handleClick (event) {
   if (link) {
     event.preventDefault();
 
+    // Remove event listeners from sphere.js
     window.removeEventListener('resize', onWindowResize);
     window.removeEventListener('load', onWindowLoad);
 
@@ -42,6 +43,8 @@ function loadAjaxContent (url, isPopState) {
 
   // Animate the content out
   if (currentPage === 'home') {
+    // Store the current scrollY so we can return to it
+    window.sessionStorage.setItem('prevY', window.scrollY);
     leaveHomeAnimation();
   } else {
     leaveEntryAnimation();
@@ -54,7 +57,7 @@ function loadAjaxContent (url, isPopState) {
     .catch(error => console.log(error));
 
   // Set a minimum delay so animations don't run too quick
-  delay = new Promise(resolve => setTimeout(resolve, 900));
+  delay = new Promise(resolve => setTimeout(resolve, 1000));
 }
 
 function leaveHomeAnimation () {
@@ -92,11 +95,11 @@ function leaveEntryAnimation () {
     .to(loader, {
       opacity: 1,
       duration: 0.2
-    })
-    .to(window, {
-      scrollTo: 0,
-      duration: 0
     });
+  // .to(window, {
+  //   scrollTo: 0,
+  //   duration: 0
+  // });
 }
 
 function processAjax (response, url, isPopState) {
@@ -118,6 +121,7 @@ function processAjax (response, url, isPopState) {
     if (currentPage === 'home') {
       revealEntryAnimation();
     } else {
+      // console.log(window.sessionStorage.getItem('prevY'));
       revealHomeAnimation();
     }
 
@@ -146,8 +150,7 @@ function processAjax (response, url, isPopState) {
 }
 
 function revealHomeAnimation () {
-  console.log('Time to reveal home page');
-  // Reveal content
+  // Reveal animation for Entry -> Homepage
   gsap.timeline()
     .to(headerContents, {
       opacity: 0,
@@ -157,6 +160,10 @@ function revealHomeAnimation () {
     .to(loader, {
       y: '100%',
       duration: 0.5
+    })
+    .to(window, {
+      scrollTo: window.sessionStorage.getItem('prevY') || 0,
+      duration: 0
     })
     .fromTo(content, {
       opacity: 0
@@ -168,7 +175,7 @@ function revealHomeAnimation () {
 }
 
 function revealEntryAnimation () {
-  // Reveal content
+  // Reveal animation for Homepage -> Entry
   gsap.timeline()
     .add('fade')
     .fromTo(content, {
