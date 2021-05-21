@@ -18,7 +18,10 @@ $stop6: #F0E59A;
   grid-column: span 13;
   display: grid;
   border-bottom: $border-primary;
-  width: 0;
+
+  .js & {
+    width: 0;
+  }
 
   @include media($m-screen-up) {
     grid-column: span 9;
@@ -26,7 +29,9 @@ $stop6: #F0E59A;
   }
 
   &__label {
-    display: none;
+    .js & {
+      display: none;
+    }
 
     @include media($m-screen-up) {
       display: flex;
@@ -35,8 +40,11 @@ $stop6: #F0E59A;
       padding-left: $space * 2;
       border-left: rem(4) solid transparent;
       grid-column: auto / span 4;
-      opacity: 0;
-      transform: translateX(-$space * 2);
+
+      .js & {
+        opacity: 0;
+        transform: translateX(-$space * 2);
+      }
     }
 
     &--second {
@@ -76,7 +84,10 @@ $stop6: #F0E59A;
     width: 100%;
     height: 100%;
     background-image: linear-gradient($stop1, $stop2);
-    transform: translateY(-101%);
+
+    .js & {
+      transform: translateY(-101%);
+    }
   }
 
   &__bottom-wrap {
@@ -92,7 +103,10 @@ $stop6: #F0E59A;
     width: 100%;
     height: 100%;
     background-image: linear-gradient(90deg, $stop2, $stop3);
-    transform: translateX(-101%);
+
+    .js & {
+      transform: translateX(-101%);
+    }
   }
 
   &--2 {
