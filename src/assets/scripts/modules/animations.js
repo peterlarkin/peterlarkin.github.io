@@ -8,7 +8,8 @@ function zigZag (trigger) {
       trigger,
       start: 'top 75%',
       end: 'bottom 50%',
-      toggleActions: 'play none none reverse'
+      // toggleActions: 'play none none reverse'
+      scrub: true
     }
   })
     .to('.js-zag', { y: 0, x: 0, stagger: 0.2, duration: 0.2, delay: 0.5, ease: 'sine.inOut' })

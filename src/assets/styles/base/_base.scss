@@ -7,6 +7,10 @@
 
 html {
   height: 100%;
+
+  &.page-is-loading {
+    overflow: hidden;
+  }
 }
 
 body {

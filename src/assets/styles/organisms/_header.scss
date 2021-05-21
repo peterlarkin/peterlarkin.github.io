@@ -4,12 +4,15 @@
     display: none;
   }
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: $dark-green;
   padding-top: ($gtr * 2);
   padding-bottom: ($gtr * 2);
+
+  &__contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   &__arrow {
     padding-left: $gtr;

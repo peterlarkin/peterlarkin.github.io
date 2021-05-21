@@ -1,12 +1,22 @@
 import axios from 'axios';
 import gsap from 'gsap';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import about from './about';
 import animations from './animations';
 import sphere, { onWindowResize, onWindowLoad } from './sphere';
 import slider from './slider';
 
-let hideContent, delay, request;
+gsap.registerPlugin(ScrollToPlugin);
+
+let hideContentTl;
+let currentPage;
+let content;
+let delay;
+let request;
+
 const container = document.querySelector('#js-ajax-container');
+const header = document.querySelector('#js-header');
+const headerContents = header.querySelector('.header__contents');
 const loader = document.querySelector('#js-loader');
 
 function handleClick (event) {
@@ -18,27 +28,25 @@ function handleClick (event) {
     window.removeEventListener('resize', onWindowResize);
     window.removeEventListener('load', onWindowLoad);
 
+    // Load the new content
     loadAjaxContent(link.href, false);
   }
 }
 
 function loadAjaxContent (url, isPopState) {
-  const currentContent = document.querySelector('#js-ajax-content');
-  // Animate the loader
-  hideContent = gsap.timeline()
-    .set(loader, { display: 'flex' })
-    .to(currentContent, {
-      opacity: 0,
-      y: 30,
-      duration: 0.3
-    })
-    .to(loader, {
-      opacity: 1,
-      duration: 0.3
-      // ease: "power2.out"
-    });
+  // Add root class to prevent overflow
+  document.documentElement.classList.add('page-is-loading');
 
-  // Run the ajax request
+  // Set the currentPage based on body class
+  currentPage = document.querySelector('body').classList[0];
+
+  // Animate the content out
+  if (currentPage === 'home') {
+    leaveHomeAnimation();
+  } else {
+    leaveEntryAnimation();
+  }
+
   request = axios.get(url)
     .then(response => {
       return processAjax(response, url, isPopState);
@@ -49,14 +57,56 @@ function loadAjaxContent (url, isPopState) {
   delay = new Promise(resolve => setTimeout(resolve, 900));
 }
 
+function leaveHomeAnimation () {
+  // Leave animation for Homepage -> Entry
+  hideContentTl = gsap.timeline()
+    .set(loader, { display: 'flex', opacity: 1 })
+    .to('#js-ajax-content', {
+      opacity: 0,
+      duration: 0.2
+    })
+    .to(loader, {
+      y: 0,
+      duration: 0.5,
+      ease: 'circ.out'
+    })
+    .to(window, {
+      scrollTo: 0,
+      duration: 0
+    })
+    .set(header, { display: 'block' })
+    .fromTo(headerContents, { opacity: 0 }, {
+      opacity: 1,
+      duration: 0.2
+    });
+}
+
+function leaveEntryAnimation () {
+  // Leave animation for Entry -> Homepage
+  hideContentTl = gsap.timeline()
+    .set(loader, { display: 'flex', opacity: 0 })
+    .to('#js-ajax-content', {
+      opacity: 0,
+      duration: 0.2
+    })
+    .to(loader, {
+      opacity: 1,
+      duration: 0.2
+    })
+    .to(window, {
+      scrollTo: 0,
+      duration: 0
+    });
+}
+
 function processAjax (response, url, isPopState) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(response.data, 'text/html');
-  const content = doc.querySelector('#js-ajax-content');
+  content = doc.querySelector('#js-ajax-content');
   const bodyClass = doc.querySelector('body').classList;
 
   // Make sure ajax request, hide content and delay have all resolved
-  Promise.allSettled([hideContent, request, delay]).then(() => {
+  Promise.allSettled([hideContentTl, request, delay]).then(() => {
     // Update title
     document.title = doc.querySelector('title').innerHTML;
 
@@ -64,25 +114,12 @@ function processAjax (response, url, isPopState) {
     container.innerHTML = '';
     container.appendChild(content);
 
-    // Make sure page is scrolled to the top
-    document.documentElement.scrollTop = 0;
-
-    // Hide the loader
-    gsap.timeline()
-      .add('fade')
-      .fromTo(content, {
-        opacity: 0,
-        y: 20
-      }, {
-        opacity: 1,
-        y: 0,
-        duration: 0.3
-      }, 'fade')
-      .to(loader, {
-        opacity: 0,
-        duration: 0.3
-      }, 'fade')
-      .set(loader, { display: 'none' });
+    // Animate the content out
+    if (currentPage === 'home') {
+      revealEntryAnimation();
+    } else {
+      revealHomeAnimation();
+    }
 
     // If the new page has a class on the body element
     // Make sure it gets set here.
@@ -92,6 +129,8 @@ function processAjax (response, url, isPopState) {
     } else {
       document.body.classList = '';
     }
+
+    document.documentElement.classList.remove('page-is-loading');
 
     // Initialise interactive elements
     animations();
@@ -106,6 +145,45 @@ function processAjax (response, url, isPopState) {
   });
 }
 
+function revealHomeAnimation () {
+  console.log('Time to reveal home page');
+  // Reveal content
+  gsap.timeline()
+    .to(headerContents, {
+      opacity: 0,
+      duration: 0.2
+    })
+    .set(header, { display: 'none' })
+    .to(loader, {
+      y: '100%',
+      duration: 0.5
+    })
+    .fromTo(content, {
+      opacity: 0
+    }, {
+      opacity: 1,
+      duration: 0.3
+    })
+    .set(loader, { display: 'none', opacity: 0 });
+}
+
+function revealEntryAnimation () {
+  // Reveal content
+  gsap.timeline()
+    .add('fade')
+    .fromTo(content, {
+      opacity: 0
+    }, {
+      opacity: 1,
+      duration: 0.3
+    }, 'fade')
+    .to(loader, {
+      opacity: 0,
+      duration: 0.2
+    }, 'fade')
+    .set(loader, { display: 'none' });
+}
+
 function handlePop (event) {
   loadAjaxContent(event.state.url, true);
 }
@@ -114,7 +192,7 @@ export default function () {
   document.addEventListener('click', handleClick);
   window.addEventListener('popstate', handlePop);
 
-  // Initialise history state with current URL
+  // Initialise history state with state
   const url = location.href;
-  history.replaceState({ url }, null, url);
+  history.replaceState({ url, modal: false }, null, url);
 }
