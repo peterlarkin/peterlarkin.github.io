@@ -110,6 +110,7 @@ function createSphere () {
   });
   const geometry = new SphereBufferGeometry(1, 128, 128);
   const sphere = new Mesh(geometry, material);
+  sphere.scale.set(0, 0, 0);
   scene.add(sphere);
   return sphere;
 }
@@ -177,7 +178,9 @@ function scrollAnimation () {
           opacity: 0, x: -20, duration: 0.2, ease: 'power2.in'
         }, '-=0.1')
         .addLabel('sphere', '-=0.1')
-        .to(sphere.scale, {
+        .fromTo(sphere.scale, {
+          x: 1.0, y: 1.0, z: 1.0
+        }, {
           x: 0.5, y: 0.5, z: 0.5, duration: 0.8, ease: 'sine.InOut'
         }, 'sphere')
         .to(container, {
@@ -187,6 +190,21 @@ function scrollAnimation () {
         }, 'sphere')
         .to(sphere.rotation, { z: 3.14, duration: 0.8 }, 'sphere')
         .set(container, { visibility: 'hidden' });
+    }
+  });
+}
+
+export function scaleUpSphere () {
+  gsap.to(sphere.scale, {
+    x: 1,
+    y: 1,
+    z: 1,
+    duration: 1.2,
+    delay: 0.5,
+    ease: 'circ.out',
+    onComplete: () => {
+      // Wait til complete to initialise scroll animations
+      scrollAnimation();
     }
   });
 }
@@ -209,11 +227,6 @@ export function onWindowResize () {
   camera.updateProjectionMatrix();
   renderer.setSize(containerWidth, containerHeight);
   cameraZoomNeedsUpdate = true;
-}
-
-export function onWindowLoad () {
-  // Render on window load to avoid weird glitch if page is not at top.
-  renderer.render(scene, camera);
 }
 
 function fitCameraToObject (object) {
@@ -287,10 +300,9 @@ export default function () {
 
   // Setup animations
   spikeAnimation();
-  scrollAnimation();
 
   // Add resize listener
   window.addEventListener('resize', onWindowResize, false);
   // Add load listener
-  window.addEventListener('load', onWindowLoad, false);
+  window.addEventListener('load', scaleUpSphere, false);
 }

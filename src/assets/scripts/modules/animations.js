@@ -20,9 +20,30 @@ function zigZag (trigger) {
     .to('.js-work-item', { y: 0, opacity: 1, duration: 0.1, stagger: 0.1, ease: 'sine.inOut' });
 }
 
+export function revealText () {
+  gsap.timeline()
+    .to('.intro__text', {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'circ.out'
+    })
+    .to('.intro__highlights', {
+      opacity: 1,
+      y: 0,
+      duration: 0.2,
+      delay: 0.5
+    });
+}
+
 export default function () {
   const trigger = document.querySelector('#js-zig-zag');
-  if (trigger) {
-    zigZag(trigger);
+
+  if (!trigger) {
+    return;
   }
+
+  zigZag(trigger);
+
+  window.addEventListener('load', revealText, false);
 }

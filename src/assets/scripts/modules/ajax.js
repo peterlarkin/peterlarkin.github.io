@@ -2,14 +2,14 @@ import axios from 'axios';
 import gsap from 'gsap';
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 import about from './about';
-import animations from './animations';
-import sphere, { onWindowResize, onWindowLoad } from './sphere';
+import animations, { revealText } from './animations';
+import sphere, { onWindowResize, scaleUpSphere } from './sphere';
 import slider from './slider';
 
 gsap.registerPlugin(ScrollToPlugin);
 
 let hideContentTl;
-let currentPage;
+let leavingPage;
 let content;
 let delay;
 let request;
@@ -25,9 +25,8 @@ function handleClick (event) {
   if (link) {
     event.preventDefault();
 
-    // Remove event listeners from sphere.js
+    // Remove resize listener from sphere.js
     window.removeEventListener('resize', onWindowResize);
-    window.removeEventListener('load', onWindowLoad);
 
     // Load the new content
     loadAjaxContent(link.href, false);
@@ -38,11 +37,11 @@ function loadAjaxContent (url, isPopState) {
   // Add root class to prevent overflow
   document.documentElement.classList.add('page-is-loading');
 
-  // Set the currentPage based on body class
-  currentPage = document.querySelector('body').classList[0];
+  // Set the leavingPage based on body class
+  leavingPage = document.querySelector('body').classList[0];
 
   // Animate the content out
-  if (currentPage === 'home') {
+  if (leavingPage === 'home') {
     // Store the current scrollY so we can return to it
     window.sessionStorage.setItem('prevY', window.scrollY);
     leaveHomeAnimation();
@@ -114,7 +113,7 @@ function processAjax (response, url, isPopState) {
     container.appendChild(content);
 
     // Animate the content out
-    if (currentPage === 'home') {
+    if (leavingPage === 'home') {
       revealEntryAnimation();
     } else {
       // console.log(window.sessionStorage.getItem('prevY'));
@@ -133,9 +132,14 @@ function processAjax (response, url, isPopState) {
     document.documentElement.classList.remove('page-is-loading');
 
     // Initialise interactive elements
-    animations();
+    if (leavingPage === 'entry') {
+      animations();
+      revealText();
+      sphere();
+      scaleUpSphere();
+    }
+
     about();
-    sphere();
     slider();
 
     // Update browser history
