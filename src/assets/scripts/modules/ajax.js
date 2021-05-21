@@ -87,7 +87,7 @@ function leaveHomeAnimation () {
 function leaveEntryAnimation () {
   // Leave animation for Entry -> Homepage
   hideContentTl = gsap.timeline()
-    .set(loader, { display: 'flex', opacity: 0 })
+    .set(loader, { display: 'flex', opacity: 0, y: 0 })
     .to('#js-ajax-content', {
       opacity: 0,
       duration: 0.2
@@ -96,10 +96,6 @@ function leaveEntryAnimation () {
       opacity: 1,
       duration: 0.2
     });
-  // .to(window, {
-  //   scrollTo: 0,
-  //   duration: 0
-  // });
 }
 
 function processAjax (response, url, isPopState) {
