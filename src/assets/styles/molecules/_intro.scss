@@ -1,3 +1,5 @@
+@use "sass:math";
+
 .intro {
   min-height: 100vh;
 
@@ -42,11 +44,11 @@
     }
 
     h1 {
-      margin-bottom: $gtr / 2;
+      margin-bottom: math.div($gtr, 2);
     }
 
     p {
-      margin-bottom: $gtr / 2;
+      margin-bottom: math.div($gtr, 2);
     }
 
     a {

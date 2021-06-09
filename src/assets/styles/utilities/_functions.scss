@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $em-base: 16;
 
 // Convert pixels to rems
@@ -5,7 +7,7 @@ $em-base: 16;
 // Assumes $em-base is the font-size of <html>
 
 @function rem($pxval) {
-  @return ($pxval / $em-base) * 1rem;
+  @return math.div($pxval, $em-base) * 1rem;
 }
 
 // Convert pixels to ems
@@ -13,5 +15,5 @@ $em-base: 16;
 // if the parent is another value say 24px write em(12, 24)
 
 @function em($pxval, $base: $em-base) {
-  @return ($pxval / $base) * 1em;
+  @return math.div($pxval, $base) * 1em;
 }
